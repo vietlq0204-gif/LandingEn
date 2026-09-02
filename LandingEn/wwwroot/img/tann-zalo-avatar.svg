@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Tieng Anh Nghe Noi">
+  <defs>
+    <linearGradient id="orange" x1="24" y1="16" x2="138" y2="144" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffb52b"/>
+      <stop offset="0.58" stop-color="#ff7a00"/>
+      <stop offset="1" stop-color="#f04b16"/>
+    </linearGradient>
+  </defs>
+  <circle cx="80" cy="80" r="68" fill="url(#orange)"/>
+  <path d="M33 44c15-18 43-28 72-16 12 5 21 14 27 25" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".9"/>
+  <path d="M42 126c24 17 62 16 83-10" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".9"/>
+  <path d="M120 25l7 17 18 2-14 12 4 18-15-10-16 9 5-18-13-13 18-1z" fill="#fff"/>
+  <text x="80" y="64" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="800" fill="#fff">Tieng Anh</text>
+  <text x="80" y="90" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="800" fill="#fff">Nghe Noi</text>
+  <text x="80" y="111" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#fff">English Center</text>
+</svg>

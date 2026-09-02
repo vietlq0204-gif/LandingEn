@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Trung tâm tiếng Anh giao tiếp tại TPHCM với lớp sĩ số nhỏ, giáo viên nước ngoài và lộ trình luyện phản xạ nghe nói." />
+    <title>@ViewData["Title"] - Tiếng Anh Nghe Nói</title>
+    <link rel="preconnect" href="https://tienganhnghenoi.vn" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/typography.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+<header class="site-header">
+    <nav class="main-nav" aria-label="Điều hướng chính">
+        <div class="page-shell main-nav__inner">
+            <a class="brand" asp-area="" asp-controller="Home" asp-action="Index" aria-label="Tiếng Anh Nghe Nói">
+                <img src="https://tienganhnghenoi.vn/wp-content/uploads/2023/04/logo1.png" alt="" />
+            </a>
+            <input class="nav-toggle" type="checkbox" id="nav-toggle" aria-label="Mở menu" />
+            <label class="nav-toggle-label" for="nav-toggle" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <div class="nav-links">
+                <a asp-controller="Home" asp-action="Index" asp-fragment="home">Trang chủ</a>
+                <a asp-controller="Home" asp-action="Index" asp-fragment="intro">Giới thiệu</a>
+                <a asp-controller="Home" asp-action="Courses">Khóa học</a>
+                <a asp-controller="Home" asp-action="Index" asp-fragment="teachers">Giáo viên</a>
+                <a asp-controller="Home" asp-action="Index" asp-fragment="gallery">Hình ảnh</a>
+                <a asp-controller="Home" asp-action="Index" asp-fragment="news">Blog</a>
+                <a asp-controller="Home" asp-action="Index" asp-fragment="contact">Liên hệ</a>
+            </div>
+            <a class="nav-cta" asp-controller="Home" asp-action="Index" asp-fragment="test-popup" data-test-trigger>Đặt lịch test</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    @RenderBody()
+</main>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
