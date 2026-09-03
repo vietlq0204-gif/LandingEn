@@ -8,8 +8,9 @@
     --text-title: 20px;
     --text-display: 40px;
 
-    --color-Button: #e8222f;
-    --color-text: #263553;
+    --color-primary: #ff6d00;
+    --color-secondary: #c5c5c5;
+    --color-text: #001751;
     --color-surface: #ffffff;
 
     --radius-Panel: 50px;
