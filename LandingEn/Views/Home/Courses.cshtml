@@ -1,3 +1,5 @@
+@model IReadOnlyList<CourseViewModel>
+
 @{
     ViewData["Title"] = "Khóa học";
 }
@@ -5,135 +7,88 @@
 <section class="courses-page">
     <div class="page-shell">
         <header class="courses-page__heading">
-            <div class="courses-page__title">
-                <span class="courses-page__icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24"><path d="M5 3.5h12.5A1.5 1.5 0 0 1 19 5v15.5H6.5A2.5 2.5 0 0 1 4 18V4.5a1 1 0 0 1 1-1Zm1 13.05A2.46 2.46 0 0 1 6.5 16H17V5.5H6v11.05ZM6.5 18a.5.5 0 0 0 0 1H17v-1H6.5Zm2-10.5h6v1.7h-6V7.5Zm0 3.2h6v1.7h-6v-1.7Z" /></svg>
-                </span>
-                <h1>Danh sách khóa học</h1>
-            </div>
-            <p>Tìm khóa học phù hợp với mục tiêu, lịch học và ngân sách của bạn</p>
-            <span class="courses-page__badge">100% khóa học có chứng chỉ</span>
+            @* <h1>Khóa học</h1> *@
         </header>
 
+        <div class="courses-page__workspace" data-course-layout>
         <form class="course-filter" data-course-filter>
+            <div class="course-filter__header">
+                <button class="course-filter__close" type="button" aria-label="T&#7841;m &#273;&#243;ng b&#7843;ng l&#7885;c" aria-expanded="true" data-course-filter-close>&times;</button>
+            </div>
             <label class="course-filter__field course-filter__field--wide">
-                <span>Tìm kiếm khóa học</span>
+                <span>Tên khóa học</span>
                 <input type="search" name="courseName" placeholder="Nhập tên khóa học..." autocomplete="off" />
             </label>
             <label class="course-filter__field">
-                <span>Loại khóa học</span>
-                <select name="courseType">
-                    <option value="">Tất cả loại khóa học</option>
-                    <option value="giao-tiep">Giao tiếp</option>
-                    <option value="kem-1-1">Kèm 1-1</option>
-                    <option value="mat-goc">Mất gốc</option>
-                    <option value="online">Online</option>
-                    <option value="doanh-nghiep">Doanh nghiệp</option>
-                </select>
+                <span>Lo&#7841;i kh&#243;a h&#7885;c</span>
+                <div class="course-type-field" data-course-type-select>
+                    <button class="course-type-field__trigger" type="button" aria-expanded="false">
+                        <span>T&#7845;t c&#7843; lo&#7841;i kh&#243;a h&#7885;c</span>
+                        <span class="course-type-field__caret"></span>
+                    </button>
+                    <input type="hidden" name="courseType" value="" />
+                    <div class="course-type-field__dropdown">
+                        <button type="button" data-value="">T&#7845;t c&#7843; lo&#7841;i kh&#243;a h&#7885;c</button>
+                        <button type="button" data-value="giao-tiep">Giao ti&#7871;p</button>
+                        <button type="button" data-value="kem-1-1">K&#232;m 1-1</button>
+                        <button type="button" data-value="mat-goc">M&#7845;t g&#7889;c</button>
+                        <button type="button" data-value="online">Online</button>
+                        <button type="button" data-value="doanh-nghiep">Doanh nghi&#7879;p</button>
+                    </div>
+                </div>
             </label>
-            <label class="course-filter__field">
-                <span>Giá từ</span>
-                <input type="text" inputmode="numeric" name="minPrice" placeholder="Giá thấp nhất" />
-            </label>
-            <label class="course-filter__field">
-                <span>Đến</span>
-                <input type="text" inputmode="numeric" name="maxPrice" placeholder="Giá cao nhất" />
-            </label>
-            <button class="course-filter__submit" type="submit">Tìm kiếm</button>
+            <div class="course-filter__field course-filter__field--wide course-filter__range-field">
+                <span>Khoảng giá</span>
+                <div class="course-price-range" data-course-price-range>
+                    <div class="course-price-range__values">
+                        <output data-course-min-price>0đ</output>
+                        <output data-course-max-price>10.000.000đ</output>
+                    </div>
+                    <div class="course-price-range__slider">
+                        <input type="range" name="minPrice" min="0" max="10000000" step="50000" value="0" aria-label="Giá thấp nhất" />
+                        <input type="range" name="maxPrice" min="0" max="10000000" step="50000" value="10000000" aria-label="Giá cao nhất" />
+                    </div>
+                </div>
+            </div>
+            @* <button class="course-filter__submit" type="submit">Tìm kiếm</button> *@
         </form>
 
+        <div class="course-results">
+            <button class="course-filter-toggle" type="button" aria-label="M&#7903; b&#7843;ng l&#7885;c" aria-expanded="false" data-course-filter-open hidden>
+                <img src="/img/filter-button.svg" alt="" />
+            </button>
+
         <div class="course-list" data-course-list>
-            <article class="course-list__card" data-course-card data-title="Giao tiếp nhóm phản xạ" data-type="giao-tiep" data-price="850000">
-                <img src="https://tienganhnghenoi.vn/wp-content/uploads/2026/05/tieng-anh-nghe-noi-lop-nhom.jpg" alt="Lớp giao tiếp nhóm phản xạ" />
-                <div class="course-list__body">
-                    <span class="course-list__tag">Giao tiếp</span>
-                    <h2>Giao tiếp nhóm phản xạ</h2>
-                    <p>Lớp sĩ số nhỏ, luyện nghe nói liên tục với giáo viên nước ngoài.</p>
-                    <div class="course-list__meta">
-                        <span>6-12 học viên</span>
-                        <span>3 buổi/tuần</span>
+            @foreach (var course in Model)
+            {
+                <article class="course-list__card"
+                         data-course-card
+                         data-title="@course.Title"
+                         data-type="@course.Type"
+                         data-price="@course.Price"
+                         data-course-video="@course.VideoUrl"
+                         data-course-detail="@course.DetailDescription"
+                         data-course-audience="@course.Audience"
+                         data-course-schedule="@course.Schedule"
+                         data-course-roadmap="@course.Roadmap">
+                    <img src="@course.ImageUrl" alt="@course.ImageAlt" />
+                    <div class="course-list__body">
+                        <h2>@course.Title</h2>
+                        <p>@course.Summary</p>
+                        <div class="course-list__meta">
+                            <span class="course-list__tag">@course.Tag</span>
+                            <span>@course.Audience</span>
+                            <span>@course.Schedule</span>
+                        </div>
+                        <strong>@course.DisplayPrice</strong>
+                        <a asp-controller="Home" asp-action="Index" asp-fragment="test-popup" data-test-trigger>Đăng ký test</a>
                     </div>
-                    <strong>850.000đ</strong>
-                    <a asp-controller="Home" asp-action="Index" asp-fragment="test-popup" data-test-trigger>Đăng ký test</a>
-                </div>
-            </article>
-
-            <article class="course-list__card" data-course-card data-title="Tiếng Anh mất gốc căn bản" data-type="mat-goc" data-price="650000">
-                <img src="https://tienganhnghenoi.vn/wp-content/uploads/2025/11/lop-nhom-vuong-1-min.jpg" alt="Lớp tiếng Anh mất gốc căn bản" />
-                <div class="course-list__body">
-                    <span class="course-list__tag">Mất gốc</span>
-                    <h2>Tiếng Anh mất gốc căn bản</h2>
-                    <p>Xây lại nền tảng phát âm, cấu trúc câu và phản xạ hội thoại đầu tiên.</p>
-                    <div class="course-list__meta">
-                        <span>8-12 học viên</span>
-                        <span>2 buổi/tuần</span>
-                    </div>
-                    <strong>650.000đ</strong>
-                    <a asp-controller="Home" asp-action="Index" asp-fragment="test-popup" data-test-trigger>Đăng ký test</a>
-                </div>
-            </article>
-
-            <article class="course-list__card" data-course-card data-title="Kèm 1-1 cá nhân hóa" data-type="kem-1-1" data-price="1200000">
-                <img src="https://tienganhnghenoi.vn/wp-content/uploads/2025/11/lop-online-web-min.jpg" alt="Lớp kèm 1-1 cá nhân hóa" />
-                <div class="course-list__body">
-                    <span class="course-list__tag">Kèm 1-1</span>
-                    <h2>Kèm 1-1 cá nhân hóa</h2>
-                    <p>Lộ trình riêng theo mục tiêu học tập, công việc, phỏng vấn hoặc du lịch.</p>
-                    <div class="course-list__meta">
-                        <span>1 học viên</span>
-                        <span>Lịch linh hoạt</span>
-                    </div>
-                    <strong>1.200.000đ</strong>
-                    <a asp-controller="Home" asp-action="Index" asp-fragment="test-popup" data-test-trigger>Đăng ký test</a>
-                </div>
-            </article>
-
-            <article class="course-list__card" data-course-card data-title="Giao tiếp online buổi tối" data-type="online giao-tiep" data-price="500000">
-                <img src="https://tienganhnghenoi.vn/wp-content/uploads/2025/02/lop-q10-9-min.jpg" alt="Lớp giao tiếp online buổi tối" />
-                <div class="course-list__body">
-                    <span class="course-list__tag">Online</span>
-                    <h2>Giao tiếp online buổi tối</h2>
-                    <p>Học trực tuyến cùng giáo viên, phù hợp người đi làm cần lịch tối.</p>
-                    <div class="course-list__meta">
-                        <span>6-10 học viên</span>
-                        <span>Buổi tối</span>
-                    </div>
-                    <strong>500.000đ</strong>
-                    <a asp-controller="Home" asp-action="Index" asp-fragment="test-popup" data-test-trigger>Đăng ký test</a>
-                </div>
-            </article>
-
-            <article class="course-list__card" data-course-card data-title="Tiếng Anh doanh nghiệp" data-type="doanh-nghiep giao-tiep" data-price="900000">
-                <img src="https://tienganhnghenoi.vn/wp-content/uploads/2023/08/lop-cong-ty-3.jpg" alt="Lớp tiếng Anh doanh nghiệp" />
-                <div class="course-list__body">
-                    <span class="course-list__tag">Doanh nghiệp</span>
-                    <h2>Tiếng Anh doanh nghiệp</h2>
-                    <p>Thiết kế theo nhu cầu đội nhóm: họp, thuyết trình, email và chăm sóc khách hàng.</p>
-                    <div class="course-list__meta">
-                        <span>Theo nhóm</span>
-                        <span>Tại công ty</span>
-                    </div>
-                    <strong>900.000đ</strong>
-                    <a asp-controller="Home" asp-action="Index" asp-fragment="test-popup" data-test-trigger>Đăng ký test</a>
-                </div>
-            </article>
-
-            <article class="course-list__card" data-course-card data-title="Phát âm chuẩn bản xứ" data-type="giao-tiep" data-price="300000">
-                <img src="https://tienganhnghenoi.vn/wp-content/uploads/2024/12/lop-quan-10-3-min.jpg" alt="Lớp phát âm chuẩn bản xứ" />
-                <div class="course-list__body">
-                    <span class="course-list__tag">Giao tiếp</span>
-                    <h2>Phát âm chuẩn bản xứ</h2>
-                    <p>Sửa âm, nối âm, trọng âm và ngữ điệu để nói tự nhiên, dễ nghe hơn.</p>
-                    <div class="course-list__meta">
-                        <span>Workshop</span>
-                        <span>Cuối tuần</span>
-                    </div>
-                    <strong>300.000đ</strong>
-                    <a asp-controller="Home" asp-action="Index" asp-fragment="test-popup" data-test-trigger>Đăng ký test</a>
-                </div>
-            </article>
+                </article>
+            }
         </div>
 
         <p class="course-list__empty" data-course-empty>Không tìm thấy khóa học phù hợp.</p>
+        </div>
+        </div>
     </div>
 </section>

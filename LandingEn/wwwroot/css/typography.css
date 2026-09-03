@@ -1,3 +1,5 @@
+/*typography*/
+
 :root {
     --font-main: Arial;
 
@@ -6,9 +8,10 @@
     --text-title: 20px;
     --text-display: 40px;
 
-    --radius-xs: 2px;
-    --radius-sm: 4px;
-    --radius-md: 6px;
-    --radius-lg: 8px;
-    --radius-full: 50%; 
+    --color-Button: #e8222f;
+    --color-text: #263553;
+    --color-surface: #ffffff;
+
+    --radius-Panel: 50px;
+    --radius-Button: 150px;
 }

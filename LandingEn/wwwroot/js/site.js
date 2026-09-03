@@ -2,11 +2,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const zaloWidget = document.querySelector("[data-zalo-widget]");
     const quickChat = document.querySelector("[data-quick-chat]");
     const testModal = document.querySelector("[data-test-modal]");
+    const courseLayout = document.querySelector("[data-course-layout]");
     const courseFilter = document.querySelector("[data-course-filter]");
     const courseCards = document.querySelectorAll("[data-course-card]");
     const courseEmpty = document.querySelector("[data-course-empty]");
     const countrySelects = document.querySelectorAll("[data-country-select]");
     const needSelects = document.querySelectorAll("[data-need-select]");
+    const courseTypeSelects = document.querySelectorAll("[data-course-type-select]");
     let setZaloOpen = () => {};
     let setQuickChatOpen = () => {};
 
@@ -58,10 +60,46 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (courseFilter) {
+        const filterCloseButton = courseFilter.querySelector("[data-course-filter-close]");
+        const filterOpenButton = courseLayout?.querySelector("[data-course-filter-open]");
         const nameInput = courseFilter.querySelector('input[name="courseName"]');
-        const typeSelect = courseFilter.querySelector('select[name="courseType"]');
+        const typeSelect = courseFilter.querySelector('input[name="courseType"]');
+        const courseTypeSelect = courseFilter.querySelector("[data-course-type-select]");
+        const courseTypeTrigger = courseTypeSelect?.querySelector(".course-type-field__trigger");
+        const courseTypeLabel = courseTypeTrigger?.querySelector("span:first-child");
+        const courseTypeOptions = courseTypeSelect?.querySelectorAll(".course-type-field__dropdown button") || [];
         const minPriceInput = courseFilter.querySelector('input[name="minPrice"]');
         const maxPriceInput = courseFilter.querySelector('input[name="maxPrice"]');
+        const priceRange = courseFilter.querySelector("[data-course-price-range]");
+        const minPriceOutput = courseFilter.querySelector("[data-course-min-price]");
+        const maxPriceOutput = courseFilter.querySelector("[data-course-max-price]");
+        let expandedCourse = null;
+        let courseDetailBackdrop = document.querySelector("[data-course-detail-backdrop]");
+
+        if (courseCards.length && !courseDetailBackdrop) {
+            courseDetailBackdrop = document.createElement("button");
+            courseDetailBackdrop.className = "course-focus-backdrop";
+            courseDetailBackdrop.type = "button";
+            courseDetailBackdrop.hidden = true;
+            courseDetailBackdrop.setAttribute("aria-label", "Đóng chi tiết khóa học");
+            courseDetailBackdrop.setAttribute("data-course-detail-backdrop", "");
+            document.body.append(courseDetailBackdrop);
+        }
+
+        const setFilterOpen = (isOpen) => {
+            courseLayout?.classList.toggle("is-filter-collapsed", !isOpen);
+            filterCloseButton?.setAttribute("aria-expanded", String(isOpen));
+            filterOpenButton?.setAttribute("aria-expanded", String(isOpen));
+
+            if (filterOpenButton) {
+                filterOpenButton.hidden = isOpen;
+            }
+        };
+
+        const setCourseTypeOpen = (isOpen) => {
+            courseTypeSelect?.classList.toggle("is-open", isOpen);
+            courseTypeTrigger?.setAttribute("aria-expanded", String(isOpen));
+        };
 
         const normalizeText = (value) =>
             value
@@ -74,6 +112,262 @@ document.addEventListener("DOMContentLoaded", () => {
         const parsePrice = (value) => {
             const digits = value.replace(/\D/g, "");
             return digits ? Number(digits) : null;
+        };
+
+        const formatPrice = (value) => `${new Intl.NumberFormat("vi-VN").format(value)}đ`;
+
+        const withYoutubeParams = (url) => {
+            if (!url) {
+                return "";
+            }
+
+            const separator = url.includes("?") ? "&" : "?";
+            const params = new URLSearchParams({
+                controls: "0",
+                disablekb: "1",
+                fs: "0",
+                iv_load_policy: "3",
+                modestbranding: "1",
+                playsinline: "1",
+                rel: "0"
+            });
+
+            return `${url}${separator}${params.toString()}`;
+        };
+
+        const getCourseVideoSrc = (card) => card.dataset.courseVideo?.trim() || "";
+
+        const stopCourseVideo = (card) => {
+            const videoFrame = card?.querySelector(".course-list__video-frame");
+            videoFrame?.removeAttribute("src");
+        };
+
+        const closeExpandedCourse = () => {
+            if (!expandedCourse) {
+                return;
+            }
+
+            stopCourseVideo(expandedCourse);
+            expandedCourse.classList.remove("is-expanded", "is-expand-left", "is-expand-right", "is-expand-inline");
+            expandedCourse.setAttribute("aria-expanded", "false");
+            expandedCourse = null;
+            document.body.classList.remove("has-course-detail");
+
+            if (courseDetailBackdrop) {
+                courseDetailBackdrop.classList.remove("is-active");
+                courseDetailBackdrop.hidden = true;
+            }
+        };
+
+        const placeCourseDetail = (card) => {
+            const rect = card.getBoundingClientRect();
+            const viewportGap = 24;
+            const canExpandRight = window.innerWidth - rect.right - viewportGap >= rect.width;
+            const canExpandLeft = rect.left - viewportGap >= rect.width;
+
+            card.classList.remove("is-expand-left", "is-expand-right", "is-expand-inline");
+
+            if (window.matchMedia("(max-width: 1080px)").matches || (!canExpandRight && !canExpandLeft)) {
+                card.classList.add("is-expand-inline");
+                return;
+            }
+
+            card.classList.add(canExpandRight ? "is-expand-right" : "is-expand-left");
+        };
+
+        const openCourseDetail = (card) => {
+            if (card.classList.contains("is-hidden")) {
+                return;
+            }
+
+            if (expandedCourse && expandedCourse !== card) {
+                closeExpandedCourse();
+            }
+
+            expandedCourse = card;
+            placeCourseDetail(card);
+            card.classList.add("is-expanded");
+            card.setAttribute("aria-expanded", "true");
+            document.body.classList.add("has-course-detail");
+
+            const videoFrame = card.querySelector(".course-list__video-frame");
+            if (videoFrame && !videoFrame.getAttribute("src")) {
+                videoFrame.src = withYoutubeParams(videoFrame.dataset.src || "");
+            }
+
+            if (courseDetailBackdrop) {
+                courseDetailBackdrop.hidden = false;
+                requestAnimationFrame(() => courseDetailBackdrop?.classList.add("is-active"));
+            }
+        };
+
+        const createDetailLine = (label, value) => {
+            const item = document.createElement("li");
+            const strong = document.createElement("strong");
+            const span = document.createElement("span");
+
+            strong.textContent = label;
+            span.textContent = value;
+            item.append(strong, span);
+            return item;
+        };
+
+        courseCards.forEach((card) => {
+            const image = card.querySelector(":scope > img");
+            const body = card.querySelector(".course-list__body");
+            const tag = body?.querySelector(".course-list__tag");
+            const metaList = body?.querySelector(".course-list__meta");
+            const title = body?.querySelector("h2")?.textContent.trim() || "Khóa học";
+            const meta = Array.from(metaList?.querySelectorAll("span:not(.course-list__tag)") || []).map((item) => item.textContent.trim());
+            const price = body?.querySelector("strong")?.textContent.trim() || "";
+            const testLink = body?.querySelector("[data-test-trigger]");
+            const videoSrc = getCourseVideoSrc(card);
+            const detailDescription = card.dataset.courseDetail?.trim() || `${title} được thiết kế để giúp học viên luyện đúng trọng tâm, có lộ trình rõ theo mục tiêu đầu vào và được theo dõi tiến độ trong từng giai đoạn học.`;
+            const audience = card.dataset.courseAudience?.trim() || meta[0] || "Học viên cần cải thiện kỹ năng tiếng Anh";
+            const schedule = card.dataset.courseSchedule?.trim() || meta[1] || "Linh hoạt theo lớp";
+            const roadmap = card.dataset.courseRoadmap?.trim() || "Kiểm tra đầu vào, học theo mục tiêu và theo dõi tiến độ trong suốt khóa học";
+            const detail = document.createElement("div");
+            const detailCloseButton = document.createElement("button");
+            const detailScroll = document.createElement("div");
+            const paragraph = document.createElement("p");
+            const list = document.createElement("ul");
+            const actions = document.createElement("div");
+            const consultLink = document.createElement("a");
+
+            if (tag && metaList) {
+                metaList.prepend(tag);
+            }
+
+            if (image) {
+                const media = document.createElement("div");
+                media.className = "course-list__media";
+                image.before(media);
+                media.append(image);
+
+                if (videoSrc) {
+                    const videoFrame = document.createElement("iframe");
+                    videoFrame.className = "course-list__video-frame";
+                    videoFrame.dataset.src = videoSrc;
+                    videoFrame.title = `Video ${title}`;
+                    videoFrame.loading = "lazy";
+                    videoFrame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+                    videoFrame.allowFullscreen = true;
+                    media.append(videoFrame);
+
+                    const zoomButton = document.createElement("button");
+                    zoomButton.className = "course-list__video-zoom";
+                    zoomButton.type = "button";
+                    zoomButton.setAttribute("aria-label", "Phóng to video");
+                    zoomButton.innerHTML = "<span></span><span></span><span></span><span></span>";
+                    zoomButton.addEventListener("click", (event) => {
+                        event.stopPropagation();
+
+                        if (document.fullscreenElement) {
+                            document.exitFullscreen();
+                            return;
+                        }
+
+                        if (media.requestFullscreen) {
+                            media.requestFullscreen();
+                        }
+                    });
+                    media.append(zoomButton);
+                }
+            }
+
+            detail.className = "course-list__detail";
+            detailCloseButton.className = "course-list__detail-close";
+            detailCloseButton.type = "button";
+            detailCloseButton.setAttribute("aria-label", "Đóng chi tiết khóa học");
+            detailCloseButton.innerHTML = "<span></span><span></span>";
+            detailScroll.className = "course-list__detail-scroll";
+            actions.className = "course-list__detail-actions";
+            paragraph.textContent = detailDescription;
+            list.append(
+                createDetailLine("Đối tượng", audience),
+                createDetailLine("Lịch học", schedule),
+                createDetailLine("Học phí", price),
+                createDetailLine("Lộ trình", roadmap)
+            );
+
+            detailScroll.append(paragraph, list);
+
+            if (testLink) {
+                testLink.classList.add("course-list__detail-action", "course-list__detail-action--primary");
+                testLink.textContent = "Đăng ký test";
+                testLink.addEventListener("click", closeExpandedCourse);
+                actions.append(testLink);
+            }
+
+            consultLink.className = "course-list__detail-action course-list__detail-action--secondary";
+            consultLink.href = "/#contact";
+            consultLink.textContent = "Đăng ký tư vấn";
+            actions.append(consultLink);
+
+            detailCloseButton.addEventListener("click", (event) => {
+                event.stopPropagation();
+                closeExpandedCourse();
+                card.focus({ preventScroll: true });
+            });
+
+            detail.append(detailCloseButton, detailScroll, actions);
+            card.append(detail);
+            card.tabIndex = 0;
+            card.setAttribute("aria-expanded", "false");
+
+            card.addEventListener("click", (event) => {
+                if (event.target.closest("a, button, input, select")) {
+                    return;
+                }
+
+                openCourseDetail(card);
+            });
+
+            card.addEventListener("keydown", (event) => {
+                if (event.key !== "Enter" && event.key !== " ") {
+                    return;
+                }
+
+                event.preventDefault();
+                openCourseDetail(card);
+            });
+
+            card.addEventListener("mouseleave", () => {
+                if (expandedCourse === card) {
+                    closeExpandedCourse();
+                }
+            });
+        });
+
+        const syncPriceRange = (changedControl) => {
+            if (!minPriceInput || !maxPriceInput) {
+                return;
+            }
+
+            const rangeMin = Number(minPriceInput.min || 0);
+            const rangeMax = Number(minPriceInput.max || maxPriceInput.max || 10000000);
+            let minPrice = Number(minPriceInput.value || rangeMin);
+            let maxPrice = Number(maxPriceInput.value || rangeMax);
+
+            if (minPrice > maxPrice && changedControl === minPriceInput) {
+                maxPrice = minPrice;
+            } else if (maxPrice < minPrice) {
+                minPrice = maxPrice;
+            }
+
+            minPriceInput.value = String(minPrice);
+            maxPriceInput.value = String(maxPrice);
+            if (minPriceOutput) {
+                minPriceOutput.textContent = formatPrice(minPrice);
+            }
+
+            if (maxPriceOutput) {
+                maxPriceOutput.textContent = formatPrice(maxPrice);
+            }
+
+            const rangeSize = rangeMax - rangeMin || 1;
+            priceRange?.style.setProperty("--range-start", String(((minPrice - rangeMin) / rangeSize) * 100));
+            priceRange?.style.setProperty("--range-end", String(((maxPrice - rangeMin) / rangeSize) * 100));
         };
 
         const filterCourses = () => {
@@ -96,6 +390,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 card.classList.toggle("is-hidden", !isVisible);
                 if (isVisible) {
                     visibleCount += 1;
+                } else if (expandedCourse === card) {
+                    closeExpandedCourse();
                 }
             });
 
@@ -107,9 +403,71 @@ document.addEventListener("DOMContentLoaded", () => {
             filterCourses();
         });
 
-        [nameInput, typeSelect, minPriceInput, maxPriceInput].forEach((control) => {
+        [nameInput, typeSelect].forEach((control) => {
             control?.addEventListener("input", filterCourses);
             control?.addEventListener("change", filterCourses);
+        });
+
+        courseTypeTrigger?.addEventListener("click", (event) => {
+            event.stopPropagation();
+            setCourseTypeOpen(!courseTypeSelect?.classList.contains("is-open"));
+        });
+
+        courseTypeOptions.forEach((option) => {
+            option.addEventListener("click", (event) => {
+                event.stopPropagation();
+
+                if (typeSelect) {
+                    typeSelect.value = option.dataset.value || "";
+                }
+
+                if (courseTypeLabel) {
+                    courseTypeLabel.textContent = option.textContent.trim();
+                }
+
+                setCourseTypeOpen(false);
+                filterCourses();
+            });
+        });
+
+        [minPriceInput, maxPriceInput].forEach((control) => {
+            control?.addEventListener("input", (event) => {
+                syncPriceRange(event.currentTarget);
+                filterCourses();
+            });
+            control?.addEventListener("change", (event) => {
+                syncPriceRange(event.currentTarget);
+                filterCourses();
+            });
+        });
+
+        filterCloseButton?.addEventListener("click", () => {
+            setFilterOpen(false);
+        });
+
+        filterOpenButton?.addEventListener("click", () => {
+            setFilterOpen(true);
+        });
+
+        setFilterOpen(true);
+        syncPriceRange();
+        filterCourses();
+
+        courseDetailBackdrop?.addEventListener("click", closeExpandedCourse);
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closeExpandedCourse();
+            }
+        });
+        document.addEventListener("click", (event) => {
+            if (expandedCourse && !expandedCourse.contains(event.target)) {
+                closeExpandedCourse();
+            }
+        });
+        window.addEventListener("resize", () => {
+            if (expandedCourse) {
+                placeCourseDetail(expandedCourse);
+            }
         });
     }
 
@@ -313,6 +671,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         countrySelects.forEach((countrySelect) => countrySelect.classList.remove("is-open"));
         needSelects.forEach((needSelect) => needSelect.classList.remove("is-open"));
+        courseTypeSelects.forEach((courseTypeSelect) => {
+            courseTypeSelect.classList.remove("is-open");
+            courseTypeSelect.querySelector(".course-type-field__trigger")?.setAttribute("aria-expanded", "false");
+        });
     });
 
     document.addEventListener("click", (event) => {
@@ -327,6 +689,13 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!needSelect.contains(event.target)) {
                 needSelect.classList.remove("is-open");
                 needSelect.querySelector(".need-field__trigger")?.setAttribute("aria-expanded", "false");
+            }
+        });
+
+        courseTypeSelects.forEach((courseTypeSelect) => {
+            if (!courseTypeSelect.contains(event.target)) {
+                courseTypeSelect.classList.remove("is-open");
+                courseTypeSelect.querySelector(".course-type-field__trigger")?.setAttribute("aria-expanded", "false");
             }
         });
     });
