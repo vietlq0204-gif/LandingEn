@@ -1,7 +1,14 @@
-@* zalo-widget *@
+@model ContactInfoViewModel
+
+@{
+    var baseInfo = ViewData["BaseInfo"] as BaseInfoViewModel ?? new BaseInfoViewModel();
+    var addresses = Model.Addresses ?? Array.Empty<string>();
+    var primaryAddress = addresses.Count > 0 ? addresses[0] : "";
+}
+
 <div class="zalo-widget" data-zalo-widget>
     <button class="zalo-widget__trigger" type="button" aria-expanded="false" aria-controls="zalo-panel" aria-label="Mở thông tin Zalo">
-        <img src="https://tienganhnghenoi.vn/wp-content/plugins/contact-me-on-zalo/assets/images/zalo-2.png" alt="" />
+        <img src="@baseInfo.Logos.Zalo.ImageUrl" alt="@baseInfo.Logos.Zalo.Alt" />
     </button>
     <div class="zalo-widget__backdrop" data-zalo-close></div>
     <section class="zalo-widget__panel" id="zalo-panel" aria-label="Thông tin Zalo">
@@ -13,60 +20,59 @@
             <div class="zalo-widget__main">
                 <div class="zalo-widget__profile">
                     <span class="zalo-widget__avatar">
-                        <img src="/img/tann-zalo-avatar.svg" alt="Logo Tiếng Anh Nghe Nói" />
+                        <img src="@baseInfo.Logos.Avatar.ImageUrl" alt="@baseInfo.Logos.Avatar.Alt" />
                     </span>
                     <div>
-                        <h3>Tiếng Anh Nghe Nói <span>✓</span></h3>
-                        <p>Giáo dục & Đào tạo</p>
+                        <h3>@baseInfo.BrandName <span>✓</span></h3>
+                        <p>@baseInfo.Category</p>
                     </div>
                 </div>
                 <div class="zalo-widget__details">
-                    <h4>Thông tin chi tiết</h4>
+                    <h4>@Model.DetailsHeading</h4>
                     <div class="zalo-info-row">
                         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.75A7.25 7.25 0 0 0 4.75 10c0 5.35 6.72 10.72 7.01 10.94a.4.4 0 0 0 .48 0c.29-.22 7.01-5.59 7.01-10.94A7.25 7.25 0 0 0 12 2.75zm0 9.85A2.6 2.6 0 1 1 12 7.4a2.6 2.6 0 0 1 0 5.2z" /></svg>
-                        <p>468/20 Nguyễn Tri Phương, Phường 9, Phường Vườn Lài, Thành phố Hồ Chí Minh</p>
+                        <p>@primaryAddress</p>
                     </div>
                     <div class="zalo-info-row">
                         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.7 10.8a15.1 15.1 0 0 0 6.5 6.5l2.15-2.15a1.35 1.35 0 0 1 1.37-.33c1.13.38 2.34.58 3.59.58.52 0 .94.42.94.94v3.4c0 .52-.42.94-.94.94A17.48 17.48 0 0 1 2.82 3.69c0-.52.42-.94.94-.94h3.41c.52 0 .94.42.94.94 0 1.25.2 2.46.58 3.59.15.47.03.98-.33 1.37L6.7 10.8z" /></svg>
-                        <p><a href="tel:0906680616">0906680616</a></p>
+                        <p><a href="tel:@baseInfo.PhoneNumber">@baseInfo.PhoneNumber</a></p>
                     </div>
                     <div class="zalo-info-row">
                         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.75a9.25 9.25 0 1 0 0 18.5 9.25 9.25 0 0 0 0-18.5zm.85 9.58 3.45 2.05-.76 1.28-4.19-2.49V6.8h1.5v5.53z" /></svg>
-                        <p><span>Đã đóng cửa</span> · Mở cửa lúc 09:00</p>
+                        <p><span>@Model.OpenStatus</span> · @Model.OpenTimeText</p>
                     </div>
                     <div class="zalo-info-row">
                         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.25 3.25 10.7l1 1.18 1.38-1.17v8.54h5.12v-5h2.5v5h5.12v-8.54l1.38 1.17 1-1.18L12 3.25z" /></svg>
-                        <p><a href="https://tienganhnghenoi.vn" target="_blank" rel="noopener">https://tienganhnghenoi.vn</a></p>
+                        <p><a href="@baseInfo.Urls.Website" target="_blank" rel="noopener">@baseInfo.Urls.Website</a></p>
                     </div>
                 </div>
-                <p class="zalo-widget__intro">Với hơn 12 năm kinh nghiệm trong lĩnh vực đào tạo tiếng Anh chuẩn bản ngữ tại Việt Nam, Trung Tâm Tiếng Anh Nghe Nói là một trong những đơn vị tiên phong mang đến nền tảng môi trường giao tiếp với giáo viên nước ngoài.</p>
+                <p class="zalo-widget__intro">@Model.Intro</p>
             </div>
             <div class="zalo-widget__qr">
-                <img src="https://tienganhnghenoi.vn/wp-content/uploads/2023/04/qrcode-tann.png" alt="QR Zalo Tiếng Anh Nghe Nói" />
-                <span>Mở Zalo, bấm quét QR để quét và xem trên điện thoại</span>
+                <img src="@baseInfo.Qr.Zalo.ImageUrl" alt="@baseInfo.Qr.Zalo.Alt" />
+                <span>@Model.PopupQrCaption</span>
             </div>
         </div>
     </section>
 </div>
 
-@* quick-chat *@
 <div class="quick-chat" data-quick-chat>
     <div class="quick-chat__menu" aria-label="Tùy chọn liên hệ nhanh">
-        <a class="quick-chat__item quick-chat__item--phone" href="tel:0906680616" aria-label="Gọi điện">
+        <a class="quick-chat__item quick-chat__item--phone" href="tel:@baseInfo.PhoneNumber" aria-label="Gọi điện">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.3-.3.73-.39 1.12-.27 1.2.39 2.49.59 3.82.59.36 0 .65.29.65.65V20c0 .36-.29.65-.65.65C11.53 20.65 3.35 12.47 3.35 3.65 3.35 3.29 3.64 3 4 3h3.85c.36 0 .65.29.65.65 0 1.33.2 2.62.59 3.82.12.39.03.82-.27 1.12l-2.2 2.2z" /></svg>
-            <span>Hotline</span>
+            <span>@Model.PhoneLabel</span>
         </a>
-        <a class="quick-chat__item quick-chat__item--messenger" href="https://m.me/tienganhnghenoi" target="_blank" rel="noopener" aria-label="Facebook Messenger">
+        <a class="quick-chat__item quick-chat__item--messenger" href="@baseInfo.Urls.Messenger" target="_blank" rel="noopener" aria-label="Facebook Messenger">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.14 2 11.25c0 2.91 1.45 5.51 3.72 7.2V22l3.4-1.87c.91.25 1.88.38 2.88.38 5.52 0 10-4.14 10-9.26S17.52 2 12 2zm.97 12.46-2.55-2.72-4.98 2.72 5.47-5.82 2.61 2.72 4.92-2.72-5.47 5.82z" /></svg>
-            <span>Messenger</span>
+            <span>@Model.MessengerLabel</span>
         </a>
-        <a class="quick-chat__item quick-chat__item--facebook" href="https://www.facebook.com/tienganhnghenoi/" target="_blank" rel="noopener" aria-label="Facebook">
+        <a class="quick-chat__item quick-chat__item--facebook" href="@baseInfo.Urls.Facebook" target="_blank" rel="noopener" aria-label="Facebook">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.4 21v-7.7h2.6l.4-3h-3V8.35c0-.87.24-1.46 1.49-1.46h1.59V4.2c-.27-.04-1.22-.12-2.32-.12-2.3 0-3.88 1.4-3.88 3.98v2.22H7.7v3h2.58V21h3.12z" /></svg>
-            <span>Facebook</span>
+            <span>@Model.FacebookLabel</span>
         </a>
-        <a class="quick-chat__item quick-chat__item--mail" href="mailto:tienganhnghenoi2013@gmail.com" aria-label="Email">
+        <a class="quick-chat__item quick-chat__item--mail" href="mailto:@baseInfo.Email" aria-label="Email">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1zm8 7.35L5.34 7H5v10h14V7h-.34L12 12.35zM6.86 7 12 11.1 17.14 7H6.86z" /></svg>
-            <span>Email</span>
+            <span>@Model.EmailLabel</span>
         </a>
     </div>
     <button class="quick-chat__trigger" type="button" aria-expanded="false" aria-label="Mở tùy chọn liên hệ">
@@ -75,7 +81,6 @@
     </button>
 </div>
 
-@* test-modal *@
 <div class="test-modal" id="test-popup" data-test-modal aria-hidden="true">
     <div class="test-modal__backdrop" data-test-close></div>
     <section class="test-modal__panel" role="dialog" aria-modal="true" aria-labelledby="test-modal-title">
@@ -85,7 +90,7 @@
         </button>
         <div class="test-modal__register">
         <h2 id="test-modal-title">Đăng Ký Test Trình Độ Miễn Phí</h2>
-        <p>Đăng ký Test trình độ Miễn Phí cùng Giáo Viên Bản Xứ tại Tiếng Anh Nghe Nói</p>
+        <p>Đăng ký Test trình độ Miễn Phí cùng Giáo Viên Bản Xứ tại @baseInfo.BrandName</p>
         <form class="test-form" novalidate>
             <label class="test-field" data-field="fullName">
                 <span>Họ Tên *</span>
@@ -150,7 +155,7 @@
             <h2>Thành công</h2>
             <div class="test-success__actions">
                 <button class="test-success__button test-success__button--zalo" type="button" data-test-contact="zalo" aria-label="Mở Zalo">
-                    <img src="https://tienganhnghenoi.vn/wp-content/plugins/contact-me-on-zalo/assets/images/zalo-2.png" alt="" />
+                    <img src="@baseInfo.Logos.Zalo.ImageUrl" alt="@baseInfo.Logos.Zalo.Alt" />
                 </button>
                 <button class="test-success__button test-success__button--messenger" type="button" data-test-contact="messenger" aria-label="Mở Messenger">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.14 2 11.25c0 2.91 1.45 5.51 3.72 7.2V22l3.4-1.87c.91.25 1.88.38 2.88.38 5.52 0 10-4.14 10-9.26S17.52 2 12 2zm.97 12.46-2.55-2.72-4.98 2.72 5.47-5.82 2.61 2.72 4.92-2.72-5.47 5.82z" /></svg>

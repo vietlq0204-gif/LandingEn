@@ -1,0 +1,17 @@
+{
+  "detailsHeading": "Thông tin chi tiết",
+  "phoneLabel": "Hotline",
+  "emailLabel": "Email",
+  "messengerLabel": "Messenger",
+  "facebookLabel": "Facebook",
+  "qrCaption": "Quét QRcode để kết nối",
+  "popupQrCaption": "Mở Zalo, bấm quét QR để quét và xem trên điện thoại",
+  "openStatus": "đang cập nhật",
+  "openTimeText": "Mở cửa lúc 09:00",
+  "intro": "Với nhiều năm kinh nghiệm trong lĩnh vực đào tạo tiếng Anh chuẩn bản ngữ tại Việt Nam, Trung Tâm {brandName} là một trong những đơn vị tiên phong mang đến nền tảng môi trường giao tiếp với giáo viên nước ngoài.",
+  "addresses": [
+    "Thành phố Hồ Chí Minh",
+    "P. Gia Định, TP.HCM",
+    "P. Gò Vấp, TP.HCM"
+  ]
+}

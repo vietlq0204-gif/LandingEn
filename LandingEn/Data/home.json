@@ -1,0 +1,232 @@
+{
+  "title": "Trung Tâm Tiếng Anh Giao Tiếp TPHCM",
+  "hero": {
+    "eyebrow": "100% giáo viên nước ngoài",
+    "heading": "{brandName}",
+    "lead": "Trung tâm tiếng Anh giao tiếp tại TPHCM giúp học viên luyện nghe nói, phát âm và phản xạ trong môi trường thực hành liên tục.",
+    "backgroundImageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773732656/Screenshot_2026-03-17_141942_uwkd8q.png",
+    "primaryActionText": "Test miễn phí",
+    "primaryActionHref": "#test-popup",
+    "secondaryActionText": "Xem khóa học",
+    "secondaryActionHref": "{coursesUrl}"
+  },
+  "intro": {
+    "eyebrow": "Trung tâm {brandName}",
+    "heading": "Nơi tiếng Anh trở thành phản xạ",
+    "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2026/05/homepage-hinh.jpg",
+    "imageAlt": "Học viên {brandName}",
+    "paragraphs": [
+      "Với hơn 13 năm đào tạo tiếng Anh giao tiếp, trung tâm tập trung vào lớp học sĩ số nhỏ, thực hành trực tiếp và lộ trình phù hợp từng trình độ.",
+      "Học viên được luyện phát âm, nghe hiểu, tư duy bằng tiếng Anh và xử lý các tình huống giao tiếp thật trong học tập, công việc, du lịch và hội nhập."
+    ],
+    "linkText": "Xem lộ trình",
+    "linkHref": "#roadmap"
+  },
+  "stats": [
+    { "value": "13+", "label": "Năm phát triển" },
+    { "value": "250", "label": "Giáo viên" },
+    { "value": "380.000", "label": "Học viên" },
+    { "value": "6-12", "label": "Học viên mỗi lớp" }
+  ],
+  "why": {
+    "eyebrow": "Tại sao chọn",
+    "heading": "{brandName}",
+    "items": [
+      {
+        "number": "01",
+        "title": "Giáo trình bài bản",
+        "text": "Chương trình được chia theo trình độ, mục tiêu và tình huống sử dụng tiếng Anh thực tế."
+      },
+      {
+        "number": "02",
+        "title": "Đa dạng học viên",
+        "text": "Phù hợp người mất gốc, sinh viên, người đi làm và học viên muốn nâng cao giao tiếp."
+      },
+      {
+        "number": "03",
+        "title": "Giáo viên nước ngoài",
+        "text": "Lớp học được dẫn dắt bởi giáo viên quốc tế có kinh nghiệm, thân thiện và thực tế."
+      },
+      {
+        "number": "04",
+        "title": "Phản xạ độc quyền",
+        "text": "Phương pháp Face-to-Face tăng thời gian tương tác và giúp học viên nói tự nhiên hơn."
+      }
+    ]
+  },
+  "courses": {
+    "eyebrow": "Khóa học nổi bật",
+    "heading": "Các lớp tiếng Anh giao tiếp",
+    "items": [
+      {
+        "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2025/11/lop-nhom-vuong-1-min.jpg",
+        "imageAlt": "Lớp mất gốc",
+        "title": "Lớp mất gốc",
+        "text": "Củng cố nền tảng phát âm, ngữ pháp căn bản và phản xạ nghe nói ban đầu.",
+        "linkText": "Đăng ký tư vấn",
+        "linkHref": "#contact"
+      },
+      {
+        "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2026/05/tieng-anh-nghe-noi-lop-nhom.jpg",
+        "imageAlt": "Lớp giao tiếp nhóm",
+        "title": "Lớp giao tiếp nhóm",
+        "text": "Sĩ số thấp, tương tác liên tục, phù hợp học viên muốn nói tự tin mỗi ngày.",
+        "linkText": "Đăng ký tư vấn",
+        "linkHref": "#contact"
+      },
+      {
+        "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2025/11/lop-online-web-min.jpg",
+        "imageAlt": "Lớp cá nhân hóa",
+        "title": "Lớp cá nhân hóa",
+        "text": "Online hoặc offline, thiết kế theo mục tiêu riêng và lịch học linh hoạt.",
+        "linkText": "Đăng ký tư vấn",
+        "linkHref": "#contact"
+      },
+      {
+        "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2023/08/lop-cong-ty-3.jpg",
+        "imageAlt": "Lớp công ty tại nhà",
+        "title": "Lớp công ty/tại nhà",
+        "text": "Chương trình dành cho đội nhóm, doanh nghiệp hoặc học viên cần giáo viên riêng.",
+        "linkText": "Đăng ký tư vấn",
+        "linkHref": "#contact"
+      }
+    ]
+  },
+  "roadmap": {
+    "eyebrow": "Lộ trình học",
+    "heading": "Từ mất gốc đến giao tiếp tự tin",
+    "text": "Lộ trình tập trung vào vốn từ, cấu trúc câu, phát âm, nghe hiểu và phản xạ giao tiếp trong tình huống thật. Mỗi cấp độ có mục tiêu rõ để học viên thấy tiến bộ sau từng chặng.",
+    "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2025/11/lo-trinh-adult-1-min.jpg",
+    "imageAlt": "Lộ trình học tiếng Anh giao tiếp",
+    "levels": [
+      { "number": "0", "title": "Mất gốc", "text": "Làm quen IPA, câu cơ bản và phản xạ nền tảng." },
+      { "number": "1", "title": "Sơ cấp", "text": "Giao tiếp chủ đề quen thuộc trong cuộc sống." },
+      { "number": "2", "title": "Trung cấp", "text": "Luyện suy nghĩ bằng tiếng Anh và phản hồi nhanh hơn." },
+      { "number": "3", "title": "Nâng cao", "text": "Thảo luận, thuyết trình và phản biện tự nhiên." }
+    ]
+  },
+  "teachers": {
+    "eyebrow": "Đội ngũ giáo viên",
+    "heading": "Học cùng giáo viên bản xứ",
+    "text": "Mỗi lớp được tiếp xúc với nhiều giọng Anh, Mỹ, Úc, Canada để học viên quen với giao tiếp thật.",
+    "items": [
+      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2025/07/joe-w-1-min.png", "imageAlt": "Thầy Joe", "title": "Thầy Joe" },
+      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2025/07/jami-1-min.png", "imageAlt": "Thầy Jami", "title": "Thầy Jami" },
+      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2025/07/sebas-1-min.png", "imageAlt": "Thầy Sebas", "title": "Thầy Sebas" },
+      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2023/07/TYLER-min.png", "imageAlt": "Thầy Tyler", "title": "Thầy Tyler" },
+      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2025/07/will-1-min.png", "imageAlt": "Thầy Will", "title": "Thầy Will" },
+      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2024/07/matt-1.jpg", "imageAlt": "Thầy Matt", "title": "Thầy Matt" },
+      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2025/07/jordan-1-min.png", "imageAlt": "Thầy Jordan", "title": "Thầy Jordan" },
+      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2023/07/ilsa.png", "imageAlt": "Cô Ilse", "title": "Cô Ilse" }
+    ]
+  },
+  "motto": {
+    "eyebrow": "Phương châm",
+    "heading": "Không học sách - chỉ thực hành",
+    "text": "Học viên được khuyến khích nghe không sợ nhầm, nói không sợ sai và luyện giao tiếp như một thói quen hằng ngày.",
+    "quote": "Chúng tôi không chỉ dạy cách học tiếng Anh, mà hướng dẫn bạn nói tiếng Anh tự nhiên hơn.",
+    "cite": "Ms. Joy - CEO {brandName}"
+  },
+  "gallery": {
+    "eyebrow": "Hình ảnh & video",
+    "heading": "Phòng học đẹp - giáo viên dạy hay",
+    "items": [
+      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2023/07/tieng-anh-nghe-noi-quan-10-6.jpg", "imageAlt": "Sảnh chờ rộng và đẹp", "caption": "Sảnh chờ rộng và đẹp" },
+      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2023/07/tieng-anh-nghe-noi-bt-31.jpg", "imageAlt": "Phòng học sáng tạo", "caption": "Phòng học sáng tạo" },
+      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2026/02/lop-binh-thanh-12.jpg", "imageAlt": "Giáo viên vui vẻ", "caption": "Giáo viên vui vẻ" },
+      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2025/02/lop-q10-9-min.jpg", "imageAlt": "Lớp học tương tác", "caption": "Lớp học tương tác" },
+      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2024/12/lop-quan-10-3-min.jpg", "imageAlt": "Lớp giao tiếp nhóm", "caption": "Lớp giao tiếp nhóm" },
+      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2023/07/khai-giang-lop-moi-1.jpg", "imageAlt": "Không khí lớp học", "caption": "Không khí lớp học" }
+    ]
+  },
+  "videos": {
+    "eyebrow": "Môi trường thực tế",
+    "heading": "Học tiếng Anh giao tiếp tại TPHCM",
+    "text": "Các lớp học được xây dựng cho nhiều nhu cầu: bắt đầu từ con số 0, luyện giao tiếp cho người đi làm, phát âm chuẩn và tự tin xử lý tình huống thường gặp.",
+    "items": [
+      "Bắt đầu từ con số 0 vẫn có thể học giao tiếp.",
+      "Sau vài tháng có thể nói các chủ đề đời sống.",
+      "Phát âm chuẩn hơn ngay từ những buổi đầu."
+    ]
+  },
+  "testimonials": {
+    "eyebrow": "Học viên nói gì",
+    "heading": "Hàng ngàn học viên đã chinh phục tiếng Anh giao tiếp",
+    "items": [
+      {
+        "stars": "★★★★★",
+        "text": "Lớp học thú vị, giáo viên vui vẻ và phòng học thoải mái. Mình tự tin hơn khi tương tác bằng tiếng Anh.",
+        "name": "Mai Lan"
+      },
+      {
+        "stars": "★★★★★",
+        "text": "Phương pháp nghe nói liên tục giúp mình bỏ thói quen dịch từng từ và phản xạ nhanh hơn.",
+        "name": "Tùng Anh"
+      },
+      {
+        "stars": "★★★★★",
+        "text": "Giáo viên thân thiện, sửa phát âm kỹ và tạo cảm giác thoải mái khi nói chuyện với người nước ngoài.",
+        "name": "Ngọc Anh"
+      }
+    ]
+  },
+  "news": {
+    "eyebrow": "Tin tức và sự kiện",
+    "heading": "Cập nhật mới nhất",
+    "items": [
+      {
+        "date": "22/08/2026",
+        "title": "PACK TO SCHOOL - nhận quà xịn đón năm học mới",
+        "text": "Năm học mới là thời điểm phù hợp để làm mới kỹ năng giao tiếp tiếng Anh.",
+        "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2026/08/pack-to-school-web-640x364.jpg",
+        "imageAlt": "Pack To School"
+      },
+      {
+        "date": "30/07/2026",
+        "title": "15+ cụm động từ với Find thông dụng",
+        "text": "Những cách dùng quen thuộc giúp câu nói tự nhiên hơn trong hội thoại.",
+        "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2026/07/cum-dong-tu-voi-find-1-640x364.jpg",
+        "imageAlt": "Cụm động từ với Find"
+      },
+      {
+        "date": "28/07/2026",
+        "title": "10 sự thật về học tiếng Anh giao tiếp",
+        "text": "Cách nhìn thực tế để học giao tiếp hiệu quả và bền hơn.",
+        "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2026/07/su-that-ve-hoc-tieng-anh-giao-tiep-9-640x364.jpg",
+        "imageAlt": "Học tiếng Anh giao tiếp"
+      }
+    ]
+  },
+  "contactSection": {
+    "eyebrow": "Kết nối ngay",
+    "heading": "Hỗ trợ trên Zalo {brandName}",
+    "text": "Nhắn tin với đội tư vấn để kiểm tra trình độ, chọn lớp phù hợp và nhận lịch khai giảng gần nhất.",
+    "buttonText": "Kết nối Zalo"
+  },
+  "footer": {
+    "description": "Trung tâm {brandName} - luyện phản xạ giao tiếp cùng giáo viên nước ngoài.",
+    "phoneLabel": "Hotline",
+    "addressesHeading": "Cơ sở",
+    "copyright": "© Copyright 2026 Tieng Anh Nghe Noi. All rights reserved.",
+    "linkGroups": [
+      {
+        "heading": "Giới thiệu",
+        "links": [
+          { "text": "Giáo viên", "href": "#teachers" },
+          { "text": "Hình ảnh", "href": "#gallery" },
+          { "text": "Tin tức", "href": "#news" },
+          { "text": "Liên hệ", "href": "#contact" }
+        ]
+      },
+      {
+        "heading": "Khóa học",
+        "links": [
+          { "text": "Lớp 1 kèm 1", "href": "{coursesUrl}" },
+          { "text": "Lớp nhóm", "href": "{coursesUrl}" },
+          { "text": "Lớp mất gốc", "href": "{coursesUrl}" },
+          { "text": "Lớp công ty", "href": "{coursesUrl}" }
+        ]
+      }
+    ]
+  }
+}

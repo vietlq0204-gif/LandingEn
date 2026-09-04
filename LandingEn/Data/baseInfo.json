@@ -1,0 +1,55 @@
+{
+  "brandName": "Tiếng Anh Vui vẻ",
+  "category": "Giáo dục & Đào tạo",
+  "phoneNumber": "0528815642",
+  "phoneDisplay": "0588.815.642",
+  "email": "tienganhvuive@gmail.com",
+  "preconnectUrls": [
+    "https://tienganhvuive.vn",
+    "https://res.cloudinary.com"
+  ],
+  "urls": {
+    "home": "/",
+    "courses": "/Home/Courses",
+    "website": "https://tienganhvuive.vn",
+    "zalo": "https://zalo.me/0528815642",
+    "messenger": "https://m.me/tienganhvuive",
+    "facebook": "https://www.facebook.com/tienganhvuive/"
+  },
+  "logos": {
+    "page": {
+      "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773413645/Unity_logo_jspj6u.png",
+      "alt": ""
+    },
+    "footer": {
+      "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773413645/Unity_logo_jspj6u.png",
+      "alt": "Logo trang"
+    },
+    "avatar": {
+      "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773413645/Unity_logo_jspj6u.png",
+      "alt": "Logo popup zalo"
+    },
+    "zalo": {
+      "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1788550999/zalo-1-logo_rgw9if.png",
+      "alt": "Logo Zalo"
+    },
+    "messenger": {
+      "imageUrl": "",
+      "alt": "Logo Messenger"
+    },
+    "facebook": {
+      "imageUrl": "",
+      "alt": "Logo Facebook"
+    },
+    "zaloPhone": {
+      "imageUrl": "",
+      "alt": "Zalo"
+    }
+  },
+  "qr": {
+    "zalo": {
+      "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1788551377/me_zalo_toyx50.jpg",
+      "alt": "QR Zalo"
+    }
+  }
+}

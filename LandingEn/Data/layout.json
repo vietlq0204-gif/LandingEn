@@ -1,0 +1,23 @@
+{
+  "language": "vi",
+  "titleSeparator": " - ",
+  "metaDescription": "Trung tâm tiếng Anh giao tiếp tại TPHCM với lớp sĩ số nhỏ, giáo viên nước ngoài và lộ trình luyện phản xạ nghe nói.",
+  "navigation": {
+    "ariaLabel": "Điều hướng chính",
+    "toggleAriaLabel": "Mở menu",
+    "links": [
+      { "text": "Trang chủ", "href": "{homeUrl}#home" },
+      { "text": "Giới thiệu", "href": "{homeUrl}#intro" },
+      { "text": "Khóa học", "href": "{coursesUrl}" },
+      { "text": "Giáo viên", "href": "{homeUrl}#teachers" },
+      { "text": "Hình ảnh", "href": "{homeUrl}#gallery" },
+      { "text": "Blog", "href": "{homeUrl}#news" },
+      { "text": "Liên hệ", "href": "{homeUrl}#contact" }
+    ],
+    "cta": {
+      "text": "Đặt lịch test",
+      "href": "{homeUrl}#test-popup",
+      "opensTestModal": true
+    }
+  }
+}

@@ -1,11 +1,23 @@
+@{
+    var layoutData = ViewData["LayoutData"] as LayoutViewModel ?? new LayoutViewModel();
+    var baseInfo = ViewData["BaseInfo"] as BaseInfoViewModel ?? new BaseInfoViewModel();
+    var currentTitle = ViewData["Title"]?.ToString();
+    var pageTitle = string.IsNullOrWhiteSpace(currentTitle)
+        ? baseInfo.BrandName
+        : $"{currentTitle}{layoutData.TitleSeparator}{baseInfo.BrandName}";
+}
+
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="@layoutData.Language">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Trung tâm tiếng Anh giao tiếp tại TPHCM với lớp sĩ số nhỏ, giáo viên nước ngoài và lộ trình luyện phản xạ nghe nói." />
-    <title>@ViewData["Title"] - Tiếng Anh Nghe Nói</title>
-    <link rel="preconnect" href="https://tienganhnghenoi.vn" />
+    <meta name="description" content="@layoutData.MetaDescription" />
+    <title>@pageTitle</title>
+    @foreach (var preconnectUrl in baseInfo.PreconnectUrls ?? Array.Empty<string>())
+    {
+        <link rel="preconnect" href="@preconnectUrl" />
+    }
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/typography.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -14,27 +26,31 @@
 </head>
 <body>
 <header class="site-header">
-    <nav class="main-nav" aria-label="Điều hướng chính">
+    <nav class="main-nav" aria-label="@layoutData.Navigation.AriaLabel">
         <div class="page-shell main-nav__inner">
-            <a class="brand" asp-area="" asp-controller="Home" asp-action="Index" aria-label="Tiếng Anh Nghe Nói">
-                <img src="https://tienganhnghenoi.vn/wp-content/uploads/2023/04/logo1.png" alt="" />
+            <a class="brand" href="@baseInfo.Urls.Home" aria-label="@baseInfo.BrandName">
+                <img src="@baseInfo.Logos.Page.ImageUrl" alt="@baseInfo.Logos.Page.Alt" />
             </a>
-            <input class="nav-toggle" type="checkbox" id="nav-toggle" aria-label="Mở menu" />
+            <input class="nav-toggle" type="checkbox" id="nav-toggle" aria-label="@layoutData.Navigation.ToggleAriaLabel" />
             <label class="nav-toggle-label" for="nav-toggle" aria-hidden="true">
                 <span></span>
                 <span></span>
                 <span></span>
             </label>
             <div class="nav-links">
-                <a asp-controller="Home" asp-action="Index" asp-fragment="home">Trang chủ</a>
-                <a asp-controller="Home" asp-action="Index" asp-fragment="intro">Giới thiệu</a>
-                <a asp-controller="Home" asp-action="Courses">Khóa học</a>
-                <a asp-controller="Home" asp-action="Index" asp-fragment="teachers">Giáo viên</a>
-                <a asp-controller="Home" asp-action="Index" asp-fragment="gallery">Hình ảnh</a>
-                <a asp-controller="Home" asp-action="Index" asp-fragment="news">Blog</a>
-                <a asp-controller="Home" asp-action="Index" asp-fragment="contact">Liên hệ</a>
+                @foreach (var link in layoutData.Navigation.Links ?? Array.Empty<NavigationLinkData>())
+                {
+                    <a href="@link.Href">@link.Text</a>
+                }
             </div>
-            <a class="nav-cta" asp-controller="Home" asp-action="Index" asp-fragment="test-popup" data-test-trigger>Đặt lịch test</a>
+            @if (layoutData.Navigation.Cta.OpensTestModal)
+            {
+                <a class="nav-cta" href="@layoutData.Navigation.Cta.Href" data-test-trigger>@layoutData.Navigation.Cta.Text</a>
+            }
+            else
+            {
+                <a class="nav-cta" href="@layoutData.Navigation.Cta.Href">@layoutData.Navigation.Cta.Text</a>
+            }
         </div>
     </nav>
 </header>
@@ -43,7 +59,7 @@
     @RenderBody()
 </main>
 
-@await Html.PartialAsync("_Popups")
+@await Html.PartialAsync("_Popups", ViewData["ContactInfo"] as ContactInfoViewModel ?? new ContactInfoViewModel())
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
