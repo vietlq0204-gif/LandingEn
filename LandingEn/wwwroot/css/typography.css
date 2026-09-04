@@ -1,7 +1,7 @@
 /*typography*/
 
 :root {
-    --font-main: Arial;
+    --font-main: Arial, "Helvetica Neue", Helvetica, Tahoma, "Segoe UI", sans-serif;
 
     --text-small: 12px;
     --text-body: 14px;
