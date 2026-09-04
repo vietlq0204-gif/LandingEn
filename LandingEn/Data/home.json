@@ -13,7 +13,7 @@
   "intro": {
     "eyebrow": "Trung tâm {brandName}",
     "heading": "Nơi tiếng Anh trở thành phản xạ",
-    "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2026/05/homepage-hinh.jpg",
+    "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773732651/Screenshot_2026-03-17_141223_iikcgr.png",
     "imageAlt": "Học viên {brandName}",
     "paragraphs": [
       "Với hơn 13 năm đào tạo tiếng Anh giao tiếp, trung tâm tập trung vào lớp học sĩ số nhỏ, thực hành trực tiếp và lộ trình phù hợp từng trình độ.",
@@ -59,7 +59,7 @@
     "heading": "Các lớp tiếng Anh giao tiếp",
     "items": [
       {
-        "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2025/11/lop-nhom-vuong-1-min.jpg",
+        "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773732651/Screenshot_2026-03-17_141223_iikcgr.png",
         "imageAlt": "Lớp mất gốc",
         "title": "Lớp mất gốc",
         "text": "Củng cố nền tảng phát âm, ngữ pháp căn bản và phản xạ nghe nói ban đầu.",
@@ -67,7 +67,7 @@
         "linkHref": "#contact"
       },
       {
-        "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2026/05/tieng-anh-nghe-noi-lop-nhom.jpg",
+        "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773732651/Screenshot_2026-03-17_141223_iikcgr.png",
         "imageAlt": "Lớp giao tiếp nhóm",
         "title": "Lớp giao tiếp nhóm",
         "text": "Sĩ số thấp, tương tác liên tục, phù hợp học viên muốn nói tự tin mỗi ngày.",
@@ -75,7 +75,7 @@
         "linkHref": "#contact"
       },
       {
-        "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2025/11/lop-online-web-min.jpg",
+        "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773732651/Screenshot_2026-03-17_141223_iikcgr.png",
         "imageAlt": "Lớp cá nhân hóa",
         "title": "Lớp cá nhân hóa",
         "text": "Online hoặc offline, thiết kế theo mục tiêu riêng và lịch học linh hoạt.",
@@ -83,7 +83,7 @@
         "linkHref": "#contact"
       },
       {
-        "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2023/08/lop-cong-ty-3.jpg",
+        "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773732651/Screenshot_2026-03-17_141223_iikcgr.png",
         "imageAlt": "Lớp công ty tại nhà",
         "title": "Lớp công ty/tại nhà",
         "text": "Chương trình dành cho đội nhóm, doanh nghiệp hoặc học viên cần giáo viên riêng.",
@@ -131,12 +131,12 @@
     "eyebrow": "Hình ảnh & video",
     "heading": "Phòng học đẹp - giáo viên dạy hay",
     "items": [
-      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2023/07/tieng-anh-nghe-noi-quan-10-6.jpg", "imageAlt": "Sảnh chờ rộng và đẹp", "caption": "Sảnh chờ rộng và đẹp" },
-      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2023/07/tieng-anh-nghe-noi-bt-31.jpg", "imageAlt": "Phòng học sáng tạo", "caption": "Phòng học sáng tạo" },
-      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2026/02/lop-binh-thanh-12.jpg", "imageAlt": "Giáo viên vui vẻ", "caption": "Giáo viên vui vẻ" },
-      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2025/02/lop-q10-9-min.jpg", "imageAlt": "Lớp học tương tác", "caption": "Lớp học tương tác" },
-      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2024/12/lop-quan-10-3-min.jpg", "imageAlt": "Lớp giao tiếp nhóm", "caption": "Lớp giao tiếp nhóm" },
-      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2023/07/khai-giang-lop-moi-1.jpg", "imageAlt": "Không khí lớp học", "caption": "Không khí lớp học" }
+      { "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773732651/Screenshot_2026-03-17_141223_iikcgr.png", "imageAlt": "Sảnh chờ rộng và đẹp", "caption": "Sảnh chờ rộng và đẹp" },
+      { "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773732651/Screenshot_2026-03-17_141223_iikcgr.png", "imageAlt": "Phòng học sáng tạo", "caption": "Phòng học sáng tạo" },
+      { "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773732651/Screenshot_2026-03-17_141223_iikcgr.png", "imageAlt": "Giáo viên vui vẻ", "caption": "Giáo viên vui vẻ" },
+      { "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773732651/Screenshot_2026-03-17_141223_iikcgr.png", "imageAlt": "Lớp học tương tác", "caption": "Lớp học tương tác" },
+      { "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773732651/Screenshot_2026-03-17_141223_iikcgr.png", "imageAlt": "Lớp giao tiếp nhóm", "caption": "Lớp giao tiếp nhóm" },
+      { "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773732651/Screenshot_2026-03-17_141223_iikcgr.png", "imageAlt": "Không khí lớp học", "caption": "Không khí lớp học" }
     ]
   },
   "videos": {
@@ -178,21 +178,21 @@
         "date": "22/08/2026",
         "title": "PACK TO SCHOOL - nhận quà xịn đón năm học mới",
         "text": "Năm học mới là thời điểm phù hợp để làm mới kỹ năng giao tiếp tiếng Anh.",
-        "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2026/08/pack-to-school-web-640x364.jpg",
+        "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773732651/Screenshot_2026-03-17_141223_iikcgr.png",
         "imageAlt": "Pack To School"
       },
       {
         "date": "30/07/2026",
         "title": "15+ cụm động từ với Find thông dụng",
         "text": "Những cách dùng quen thuộc giúp câu nói tự nhiên hơn trong hội thoại.",
-        "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2026/07/cum-dong-tu-voi-find-1-640x364.jpg",
+        "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773732651/Screenshot_2026-03-17_141223_iikcgr.png",
         "imageAlt": "Cụm động từ với Find"
       },
       {
         "date": "28/07/2026",
         "title": "10 sự thật về học tiếng Anh giao tiếp",
         "text": "Cách nhìn thực tế để học giao tiếp hiệu quả và bền hơn.",
-        "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2026/07/su-that-ve-hoc-tieng-anh-giao-tiep-9-640x364.jpg",
+        "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773732651/Screenshot_2026-03-17_141223_iikcgr.png",
         "imageAlt": "Học tiếng Anh giao tiếp"
       }
     ]
