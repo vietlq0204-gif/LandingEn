@@ -476,8 +476,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const contactButtons = testModal.querySelectorAll("[data-test-contact]");
         const fullNameInput = form?.querySelector('input[name="fullName"]');
         const phoneInput = form?.querySelector('input[name="phone"]');
+        const countryCodeInput = form?.querySelector('input[name="countryCode"]');
         const needInput = form?.querySelector('input[name="need"]');
         const locationInputs = form?.querySelectorAll('input[name="location"]') || [];
+        const formErrorSummary = form?.querySelector(".form-error-summary");
+        const submitButton = form?.querySelector('button[type="submit"]');
+        const requiredErrorMessage = formErrorSummary?.textContent || "";
 
         const setTestOpen = (isOpen) => {
             testModal.classList.toggle("is-open", isOpen);
@@ -522,6 +526,53 @@ document.addEventListener("DOMContentLoaded", () => {
         const clearFieldError = (fieldName) => {
             setFieldError(fieldName, false);
             form?.classList.remove("has-errors");
+            if (formErrorSummary) {
+                formErrorSummary.textContent = requiredErrorMessage;
+            }
+        };
+
+        const setFormMessage = (message) => {
+            if (formErrorSummary) {
+                formErrorSummary.textContent = message;
+            }
+
+            form?.classList.add("has-errors");
+        };
+
+        const getSelectedLocation = () =>
+            Array.from(locationInputs).find((input) => input.checked)?.value || "";
+
+        const buildRegistrationPayload = () => ({
+            fullName: fullNameInput?.value.trim() || "",
+            phone: phoneInput?.value.trim() || "",
+            countryCode: countryCodeInput?.value.trim() || "",
+            location: getSelectedLocation(),
+            need: needInput?.value.trim() || ""
+        });
+
+        const submitTestRegistration = async () => {
+            submitButton?.setAttribute("disabled", "disabled");
+
+            try {
+                const response = await fetch("/api/test-registration", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(buildRegistrationPayload())
+                });
+
+                if (!response.ok) {
+                    throw new Error("Submit failed");
+                }
+
+                form?.reset();
+                setTestSuccess(true);
+            } catch {
+                setFormMessage("Không gửi được đăng ký. Vui lòng thử lại hoặc liên hệ trực tiếp qua Zalo.");
+            } finally {
+                submitButton?.removeAttribute("disabled");
+            }
         };
 
         testTriggers.forEach((trigger) => {
@@ -571,7 +622,7 @@ document.addEventListener("DOMContentLoaded", () => {
         form?.addEventListener("submit", (event) => {
             event.preventDefault();
             if (validateTestForm()) {
-                setTestSuccess(true);
+                submitTestRegistration();
             }
         });
 
