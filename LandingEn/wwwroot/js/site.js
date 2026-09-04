@@ -550,11 +550,20 @@ document.addEventListener("DOMContentLoaded", () => {
             need: needInput?.value.trim() || ""
         });
 
+        const isStaticRegistration = Boolean(window.LANDINGEN_STATIC_SITE);
+        const registrationEndpoint = window.LANDINGEN_REGISTRATION_ENDPOINT || "/api/test-registration";
+
         const submitTestRegistration = async () => {
             submitButton?.setAttribute("disabled", "disabled");
 
             try {
-                const response = await fetch("/api/test-registration", {
+                if (isStaticRegistration) {
+                    form?.reset();
+                    setTestSuccess(true);
+                    return;
+                }
+
+                const response = await fetch(registrationEndpoint, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
