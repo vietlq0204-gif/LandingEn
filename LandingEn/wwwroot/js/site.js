@@ -42,10 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
             trigger?.setAttribute("aria-expanded", String(isOpen));
         };
 
-        quickChat.addEventListener("mouseenter", () => {
-            setQuickChatOpen(true);
-        });
-
         trigger?.addEventListener("click", (event) => {
             event.stopPropagation();
             setQuickChatOpen(!quickChat.classList.contains("is-open"));
