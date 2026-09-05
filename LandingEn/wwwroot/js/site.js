@@ -552,32 +552,88 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const isStaticRegistration = Boolean(window.LANDINGEN_STATIC_SITE);
         const registrationEndpoint = window.LANDINGEN_REGISTRATION_ENDPOINT || "/api/test-registration";
+        const formspreePlaceholder = "https://formspree.io/f/YOUR_FORM_ID";
+
+        const getFormspreeEndpoint = () =>
+            (window.LANDINGEN_FORMSPREE_ENDPOINT || form?.getAttribute("action") || "").trim();
+
+        const isConfiguredFormspreeEndpoint = (endpoint) =>
+            /^https:\/\/formspree\.io\/f\/[a-zA-Z0-9]+$/.test(endpoint)
+            && endpoint !== formspreePlaceholder;
+
+        const buildFormspreePayload = () => {
+            const payload = buildRegistrationPayload();
+            const formData = new FormData();
+            const fullPhone = [payload.countryCode, payload.phone]
+                .filter((value) => value)
+                .join(" ");
+
+            formData.set("fullName", payload.fullName);
+            formData.set("phone", payload.phone);
+            formData.set("countryCode", payload.countryCode);
+            formData.set("fullPhone", fullPhone);
+            formData.set("location", payload.location);
+            formData.set("need", payload.need);
+            formData.set("pageUrl", window.location.href);
+            formData.set("submittedAt", new Date().toLocaleString("vi-VN", {
+                timeZone: "Asia/Ho_Chi_Minh"
+            }));
+            formData.set("_subject", "Dang ky test trinh do moi");
+
+            return formData;
+        };
+
+        const submitStaticRegistration = async () => {
+            const formspreeEndpoint = getFormspreeEndpoint();
+            if (!isConfiguredFormspreeEndpoint(formspreeEndpoint)) {
+                throw new Error("Formspree endpoint is not configured.");
+            }
+
+            const response = await fetch(formspreeEndpoint, {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json"
+                },
+                body: buildFormspreePayload()
+            });
+
+            if (!response.ok) {
+                if (response.status === 429) {
+                    throw new Error("Too many submissions.");
+                }
+
+                throw new Error("Formspree submit failed.");
+            }
+        };
 
         const submitTestRegistration = async () => {
             submitButton?.setAttribute("disabled", "disabled");
 
             try {
                 if (isStaticRegistration) {
-                    form?.reset();
-                    setTestSuccess(true);
-                    return;
-                }
+                    await submitStaticRegistration();
+                } else {
+                    const response = await fetch(registrationEndpoint, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(buildRegistrationPayload())
+                    });
 
-                const response = await fetch(registrationEndpoint, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(buildRegistrationPayload())
-                });
-
-                if (!response.ok) {
-                    throw new Error("Submit failed");
+                    if (!response.ok) {
+                        throw new Error("Submit failed");
+                    }
                 }
 
                 form?.reset();
                 setTestSuccess(true);
-            } catch {
+            } catch (error) {
+                if (error?.message === "Formspree endpoint is not configured.") {
+                    setFormMessage("Chua cau hinh Formspree endpoint. Vui long thay YOUR_FORM_ID bang form ID that.");
+                    return;
+                }
+
                 setFormMessage("Không gửi được đăng ký. Vui lòng thử lại hoặc liên hệ trực tiếp qua Zalo.");
             } finally {
                 submitButton?.removeAttribute("disabled");

@@ -7,6 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <None Include="..\index.html" Link="GitHub Pages\index.html" />
+        <None Include="..\courses.html" Link="GitHub Pages\courses.html" />
+    </ItemGroup>
+
+    <ItemGroup>
         <Content Update="Data\courses.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
             <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

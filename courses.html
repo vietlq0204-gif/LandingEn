@@ -312,7 +312,7 @@
         <div class="test-modal__register">
         <h2 id="test-modal-title">Đăng Ký Test Trình Độ Miễn Phí</h2>
         <p>Đăng ký Test trình độ Miễn Phí cùng Giáo Viên Bản Xứ tại Ti&#x1EBF;ng Anh Vui v&#x1EBB;</p>
-        <form class="test-form" novalidate>
+        <form class="test-form" action="https://formspree.io/f/xljelvrz" method="POST" novalidate>
             <label class="test-field" data-field="fullName">
                 <span>Họ Tên *</span>
                 <input type="text" name="fullName" autocomplete="name" placeholder="Họ Tên *" required />
@@ -391,8 +391,11 @@
 
 <script src="LandingEn/wwwroot/lib/jquery/dist/jquery.min.js"></script>
 <script src="LandingEn/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script>window.LANDINGEN_STATIC_SITE = true;</script>
-<script src="LandingEn/wwwroot/js/site.js?v=ZHbkGyqnZZeMD0OLZimg5YY1vYtOe0P2uBZOkkKaVDI"></script>
+<script>
+window.LANDINGEN_STATIC_SITE = true;
+window.LANDINGEN_FORMSPREE_ENDPOINT = "https://formspree.io/f/xljelvrz";
+</script>
+<script src="LandingEn/wwwroot/js/site.js?v=formspree-20260905"></script>
 
 </body>
 </html>
