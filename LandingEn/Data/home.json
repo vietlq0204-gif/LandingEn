@@ -169,26 +169,6 @@
     "description": "Trung tâm {brandName} - luyện phản xạ giao tiếp cùng giáo viên nước ngoài.",
     "phoneLabel": "Hotline",
     "addressesHeading": "Cơ sở",
-    "copyright": "© Copyright 2026 Tieng Anh Nghe Noi. All rights reserved.",
-    "linkGroups": [
-      {
-        "heading": "Giới thiệu",
-        "links": [
-          { "text": "Giáo viên", "href": "#teachers" },
-          { "text": "Hình ảnh", "href": "#gallery" },
-          { "text": "Tin tức", "href": "#news" },
-          { "text": "Liên hệ", "href": "#contact" }
-        ]
-      },
-      {
-        "heading": "Khóa học",
-        "links": [
-          { "text": "Lớp 1 kèm 1", "href": "#courses" },
-          { "text": "Lớp nhóm", "href": "#courses" },
-          { "text": "Lớp mất gốc", "href": "#courses" },
-          { "text": "Lớp công ty", "href": "#courses" }
-        ]
-      }
-    ]
+    "copyright": "© Copyright 2026 Tieng Anh Nghe Noi. All rights reserved."
   }
 }
