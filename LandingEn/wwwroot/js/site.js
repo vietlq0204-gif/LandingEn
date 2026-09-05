@@ -228,7 +228,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const paragraph = document.createElement("p");
             const list = document.createElement("ul");
             const actions = document.createElement("div");
-            const consultLink = document.createElement("a");
 
             if (tag && metaList) {
                 metaList.prepend(tag);
@@ -290,15 +289,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (testLink) {
                 testLink.classList.add("course-list__detail-action", "course-list__detail-action--primary");
-                testLink.textContent = "Đăng ký test";
+                testLink.textContent = "Đăng ký tư vấn";
                 testLink.addEventListener("click", closeExpandedCourse);
                 actions.append(testLink);
             }
-
-            consultLink.className = "course-list__detail-action course-list__detail-action--secondary";
-            consultLink.href = "/#contact";
-            consultLink.textContent = "Đăng ký tư vấn";
-            actions.append(consultLink);
 
             detailCloseButton.addEventListener("click", (event) => {
                 event.stopPropagation();
@@ -478,7 +472,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const phoneInput = form?.querySelector('input[name="phone"]');
         const countryCodeInput = form?.querySelector('input[name="countryCode"]');
         const needInput = form?.querySelector('input[name="need"]');
-        const locationInputs = form?.querySelectorAll('input[name="location"]') || [];
+        const locationInput = form?.querySelector('select[name="location"]');
+        const noteInput = form?.querySelector('textarea[name="note"]');
         const formErrorSummary = form?.querySelector(".form-error-summary");
         const submitButton = form?.querySelector('button[type="submit"]');
         const requiredErrorMessage = formErrorSummary?.textContent || "";
@@ -510,7 +505,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const validateTestForm = () => {
             const hasFullNameError = !fullNameInput?.value.trim();
             const hasPhoneError = !phoneInput?.value.trim();
-            const hasLocationError = !Array.from(locationInputs).some((input) => input.checked);
+            const hasLocationError = !locationInput?.value.trim();
             const hasNeedError = !needInput?.value.trim();
 
             setFieldError("fullName", hasFullNameError);
@@ -539,15 +534,13 @@ document.addEventListener("DOMContentLoaded", () => {
             form?.classList.add("has-errors");
         };
 
-        const getSelectedLocation = () =>
-            Array.from(locationInputs).find((input) => input.checked)?.value || "";
-
         const buildRegistrationPayload = () => ({
             fullName: fullNameInput?.value.trim() || "",
             phone: phoneInput?.value.trim() || "",
             countryCode: countryCodeInput?.value.trim() || "",
-            location: getSelectedLocation(),
-            need: needInput?.value.trim() || ""
+            location: locationInput?.value.trim() || "",
+            need: needInput?.value.trim() || "",
+            note: noteInput?.value.trim() || ""
         });
 
         const isStaticRegistration = Boolean(window.LANDINGEN_STATIC_SITE);
@@ -574,11 +567,12 @@ document.addEventListener("DOMContentLoaded", () => {
             formData.set("fullPhone", fullPhone);
             formData.set("location", payload.location);
             formData.set("need", payload.need);
+            formData.set("note", payload.note);
             formData.set("pageUrl", window.location.href);
             formData.set("submittedAt", new Date().toLocaleString("vi-VN", {
                 timeZone: "Asia/Ho_Chi_Minh"
             }));
-            formData.set("_subject", "Dang ky test trinh do moi");
+            formData.set("_subject", "Dang ky tu van moi");
 
             return formData;
         };
@@ -634,7 +628,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
 
-                setFormMessage("Không gửi được đăng ký. Vui lòng thử lại hoặc liên hệ trực tiếp qua Zalo.");
+                setFormMessage("Không gửi được đăng ký. Vui lòng thử lại hoặc liên hệ trực tiếp.");
             } finally {
                 submitButton?.removeAttribute("disabled");
             }
@@ -693,9 +687,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         fullNameInput?.addEventListener("input", () => clearFieldError("fullName"));
         phoneInput?.addEventListener("input", () => clearFieldError("phone"));
-        locationInputs.forEach((input) => {
-            input.addEventListener("change", () => clearFieldError("location"));
-        });
+        locationInput?.addEventListener("change", () => clearFieldError("location"));
     }
 
     countrySelects.forEach((countrySelect) => {

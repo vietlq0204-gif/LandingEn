@@ -17,4 +17,7 @@ public class TestRegistrationRequest
 
     [Required]
     public string Need { get; set; } = "";
+
+    [MaxLength(500)]
+    public string Note { get; set; } = "";
 }

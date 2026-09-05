@@ -5,10 +5,10 @@
     "heading": "{brandName}",
     "lead": "Trung tâm tiếng Anh giao tiếp tại TPHCM giúp học viên luyện nghe nói, phát âm và phản xạ trong môi trường thực hành liên tục.",
     "backgroundImageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773732656/Screenshot_2026-03-17_141942_uwkd8q.png",
-    "primaryActionText": "Test miễn phí",
+    "primaryActionText": "Đăng ký tư vấn",
     "primaryActionHref": "#test-popup",
     "secondaryActionText": "Xem khóa học",
-    "secondaryActionHref": "{coursesUrl}"
+    "secondaryActionHref": "#courses"
   },
   "intro": {
     "eyebrow": "Trung tâm {brandName}",
@@ -55,42 +55,8 @@
     ]
   },
   "courses": {
-    "eyebrow": "Khóa học nổi bật",
-    "heading": "Các lớp tiếng Anh giao tiếp",
-    "items": [
-      {
-        "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773732651/Screenshot_2026-03-17_141223_iikcgr.png",
-        "imageAlt": "Lớp mất gốc",
-        "title": "Lớp mất gốc",
-        "text": "Củng cố nền tảng phát âm, ngữ pháp căn bản và phản xạ nghe nói ban đầu.",
-        "linkText": "Đăng ký tư vấn",
-        "linkHref": "#contact"
-      },
-      {
-        "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773732651/Screenshot_2026-03-17_141223_iikcgr.png",
-        "imageAlt": "Lớp giao tiếp nhóm",
-        "title": "Lớp giao tiếp nhóm",
-        "text": "Sĩ số thấp, tương tác liên tục, phù hợp học viên muốn nói tự tin mỗi ngày.",
-        "linkText": "Đăng ký tư vấn",
-        "linkHref": "#contact"
-      },
-      {
-        "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773732651/Screenshot_2026-03-17_141223_iikcgr.png",
-        "imageAlt": "Lớp cá nhân hóa",
-        "title": "Lớp cá nhân hóa",
-        "text": "Online hoặc offline, thiết kế theo mục tiêu riêng và lịch học linh hoạt.",
-        "linkText": "Đăng ký tư vấn",
-        "linkHref": "#contact"
-      },
-      {
-        "imageUrl": "https://res.cloudinary.com/dfzck0syr/image/upload/v1773732651/Screenshot_2026-03-17_141223_iikcgr.png",
-        "imageAlt": "Lớp công ty tại nhà",
-        "title": "Lớp công ty/tại nhà",
-        "text": "Chương trình dành cho đội nhóm, doanh nghiệp hoặc học viên cần giáo viên riêng.",
-        "linkText": "Đăng ký tư vấn",
-        "linkHref": "#contact"
-      }
-    ]
+    "eyebrow": "Khóa học",
+    "heading": "Các lớp tiếng anh giao tiếp"
   },
   "roadmap": {
     "eyebrow": "Lộ trình học",
@@ -113,11 +79,7 @@
       { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2025/07/joe-w-1-min.png", "imageAlt": "Thầy Joe", "title": "Thầy Joe" },
       { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2025/07/jami-1-min.png", "imageAlt": "Thầy Jami", "title": "Thầy Jami" },
       { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2025/07/sebas-1-min.png", "imageAlt": "Thầy Sebas", "title": "Thầy Sebas" },
-      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2023/07/TYLER-min.png", "imageAlt": "Thầy Tyler", "title": "Thầy Tyler" },
-      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2025/07/will-1-min.png", "imageAlt": "Thầy Will", "title": "Thầy Will" },
-      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2024/07/matt-1.jpg", "imageAlt": "Thầy Matt", "title": "Thầy Matt" },
-      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2025/07/jordan-1-min.png", "imageAlt": "Thầy Jordan", "title": "Thầy Jordan" },
-      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2023/07/ilsa.png", "imageAlt": "Cô Ilse", "title": "Cô Ilse" }
+      { "imageUrl": "https://tienganhnghenoi.vn/wp-content/uploads/2023/07/TYLER-min.png", "imageAlt": "Thầy Tyler", "title": "Thầy Tyler" }
     ]
   },
   "motto": {
@@ -221,10 +183,10 @@
       {
         "heading": "Khóa học",
         "links": [
-          { "text": "Lớp 1 kèm 1", "href": "{coursesUrl}" },
-          { "text": "Lớp nhóm", "href": "{coursesUrl}" },
-          { "text": "Lớp mất gốc", "href": "{coursesUrl}" },
-          { "text": "Lớp công ty", "href": "{coursesUrl}" }
+          { "text": "Lớp 1 kèm 1", "href": "#courses" },
+          { "text": "Lớp nhóm", "href": "#courses" },
+          { "text": "Lớp mất gốc", "href": "#courses" },
+          { "text": "Lớp công ty", "href": "#courses" }
         ]
       }
     ]

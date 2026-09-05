@@ -8,14 +8,14 @@
     "links": [
       { "text": "Trang chủ", "href": "{homeUrl}#home" },
       { "text": "Giới thiệu", "href": "{homeUrl}#intro" },
-      { "text": "Khóa học", "href": "{coursesUrl}" },
+      { "text": "Khóa học", "href": "{homeUrl}#courses" },
       { "text": "Giáo viên", "href": "{homeUrl}#teachers" },
       { "text": "Hình ảnh", "href": "{homeUrl}#gallery" },
       { "text": "Blog", "href": "{homeUrl}#news" },
       { "text": "Liên hệ", "href": "{homeUrl}#contact" }
     ],
     "cta": {
-      "text": "Đặt lịch test",
+      "text": "Đăng ký tư vấn",
       "href": "{homeUrl}#test-popup",
       "opensTestModal": true
     }

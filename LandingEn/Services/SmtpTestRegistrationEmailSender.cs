@@ -31,7 +31,7 @@ public class SmtpTestRegistrationEmailSender : ITestRegistrationEmailSender
         using var message = new MailMessage
         {
             From = new MailAddress(fromEmail, _options.FromName),
-            Subject = "Đăng ký test trình độ mới",
+            Subject = "Đăng ký tư vấn mới",
             Body = BuildBody(request),
             BodyEncoding = Encoding.UTF8,
             SubjectEncoding = Encoding.UTF8,
@@ -60,12 +60,13 @@ public class SmtpTestRegistrationEmailSender : ITestRegistrationEmailSender
         var phone = string.Join(" ", new[] { request.CountryCode, request.Phone }.Where(value => !string.IsNullOrWhiteSpace(value)));
 
         return $"""
-               Có học viên đăng ký test trình độ tiếng anh miễn phí.
+               Có học viên đăng ký tư vấn khóa học.
 
                Họ tên: {request.FullName}
                Số điện thoại: {phone}
                Cơ sở muốn học: {request.Location}
                Nhu cầu học: {request.Need}
+               Ghi chú / Mục tiêu học tập: {request.Note}
 
                Thời gian gửi: {DateTimeOffset.Now:dd/MM/yyyy HH:mm:ss zzz}
                """;

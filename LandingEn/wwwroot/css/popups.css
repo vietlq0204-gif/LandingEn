@@ -503,6 +503,8 @@
 }
 
 .test-form > label > input[type="text"],
+.test-form > label > select,
+.test-form > label > textarea,
 .phone-field,
 .need-field__trigger {
     width: 100%;
@@ -515,19 +517,38 @@
     outline: none;
 }
 
+.test-form > label > select {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--color-text) 50%), linear-gradient(135deg, var(--color-text) 50%, transparent 50%);
+    background-position: calc(100% - 21px) 50%, calc(100% - 15px) 50%;
+    background-repeat: no-repeat;
+    background-size: 6px 6px;
+}
+
+.test-form > label > textarea {
+    min-height: 108px;
+    padding-top: 16px;
+    resize: vertical;
+}
+
 .test-form input::placeholder,
+.test-form textarea::placeholder,
 .need-field__trigger {
     color: color-mix(in srgb, var(--color-text) 68%, var(--color-surface));
     font-weight: 700;
 }
 
 .test-form > label > input[type="text"]:focus,
+.test-form > label > select:focus,
+.test-form > label > textarea:focus,
 .phone-field:focus-within,
 .need-field.is-open .need-field__trigger {
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-secondary) 22%, transparent);
 }
 
 .test-field.is-invalid > input[type="text"],
+.test-field.is-invalid > select,
+.test-field.is-invalid > textarea,
 .test-field.is-invalid .phone-field,
 .test-field.is-invalid .need-field__trigger {
     box-shadow: 0 0 0 1px var(--color-primary);

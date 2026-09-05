@@ -130,16 +130,16 @@ textarea {
 }
 
 .main-nav__inner {
-    min-height: 82px;
+    min-height: 68px;
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
-    gap: 26px;
+    gap: 20px;
 }
 
 .brand img {
-    width: 100px;
-    height: 100px;
+    width: 72px;
+    height: 72px;
     object-fit: contain;
 }
 
@@ -155,7 +155,7 @@ textarea {
 }
 
 .nav-links a {
-    padding: 30px 0;
+    padding: 20px 0;
 }
 
 .nav-links a:hover {
@@ -166,11 +166,11 @@ textarea {
 .btn-primary,
 .btn-secondary {
     display: inline-flex;
-    min-height: 46px;
+    min-height: 42px;
     align-items: center;
     justify-content: center;
     border-radius: var(--radius-Button);
-    padding: 0 22px;
+    padding: 0 18px;
     font-size: var(--text-small);
     font-weight: 800;
     text-transform: uppercase;
@@ -232,8 +232,13 @@ textarea {
     }
 
     .main-nav__inner {
-        min-height: 72px;
+        min-height: 64px;
         grid-template-columns: auto auto;
+    }
+
+    .brand img {
+        width: 64px;
+        height: 64px;
     }
 
     .nav-toggle-label {
@@ -264,7 +269,7 @@ textarea {
         position: absolute;
         left: 14px;
         right: 14px;
-        top: 72px;
+        top: 64px;
         display: grid;
         gap: 0;
         padding: 12px;

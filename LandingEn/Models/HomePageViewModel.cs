@@ -4,6 +4,8 @@ public class HomePageViewModel
 {
     public HomePageData Home { get; set; } = new();
 
+    public IReadOnlyList<CourseViewModel> Courses { get; set; } = [];
+
     public ContactInfoViewModel Contact { get; set; } = new();
 
     public BaseInfoViewModel BaseInfo { get; set; } = new();

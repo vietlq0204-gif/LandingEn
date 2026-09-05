@@ -26,6 +26,7 @@ public class HomeController : Controller
         return View(new HomePageViewModel
         {
             Home = ReadJsonFile<HomePageData>("home.json", sharedData.BaseInfo) ?? new HomePageData(),
+            Courses = ReadJsonFile<IReadOnlyList<CourseViewModel>>("courses.json", sharedData.BaseInfo) ?? [],
             Contact = sharedData.ContactInfo,
             BaseInfo = sharedData.BaseInfo
         });
@@ -40,10 +41,7 @@ public class HomeController : Controller
 
     public IActionResult Courses()
     {
-        SetSharedViewData();
-        var courses = ReadJsonFile<IReadOnlyList<CourseViewModel>>("courses.json") ?? [];
-
-        return View(courses);
+        return RedirectToAction(actionName: nameof(Index), controllerName: null, routeValues: null, fragment: "courses");
     }
 
     private T? ReadJsonFile<T>(string fileName, BaseInfoViewModel? baseInfo = null)

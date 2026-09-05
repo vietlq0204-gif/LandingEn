@@ -10,7 +10,7 @@
   ],
   "urls": {
     "home": "/",
-    "courses": "/Home/Courses",
+    "courses": "/#courses",
     "website": "https://tienganhvuive.vn",
     "zalo": "https://zalo.me/0528815642",
     "messenger": "https://m.me/tienganhvuive",

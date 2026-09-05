@@ -12,6 +12,7 @@
 
 @section Styles {
     <link rel="stylesheet" href="~/css/Home.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Course.css" asp-append-version="true" />
 }
 
 <section class="hero" id="home">
@@ -76,24 +77,91 @@
     </div>
 </section>
 
-<section class="courses section section-soft" id="courses">
+<section class="courses-page courses-page--embedded" id="courses">
     <div class="page-shell">
-        <div class="section-heading">
+        <header class="courses-page__heading section-heading">
             <p class="eyebrow">@home.Courses.Eyebrow</p>
             <h2>@home.Courses.Heading</h2>
-        </div>
-        <div class="course-grid">
-            @foreach (var course in home.Courses.Items ?? Array.Empty<ImageCardData>())
-            {
-                <article class="course-card">
-                    <img src="@course.ImageUrl" alt="@course.ImageAlt" />
-                    <div>
-                        <h3>@course.Title</h3>
-                        <p>@course.Text</p>
-                        <a href="@course.LinkHref">@course.LinkText</a>
+        </header>
+
+        <div class="courses-page__workspace" data-course-layout>
+            <form class="course-filter" data-course-filter>
+                <div class="course-filter__header">
+                    @* <button class="course-filter__close" type="button" aria-label="T&#7841;m &#273;&#243;ng b&#7843;ng l&#7885;c" aria-expanded="true" data-course-filter-close>&times;</button> *@
+                </div>
+                <label class="course-filter__field course-filter__field--wide">
+                    <span>T&#234;n kh&#243;a h&#7885;c</span>
+                    <input type="search" name="courseName" placeholder="Nh&#7853;p t&#234;n kh&#243;a h&#7885;c..." autocomplete="off" />
+                </label>
+                <label class="course-filter__field">
+                    <span>Lo&#7841;i kh&#243;a h&#7885;c</span>
+                    <div class="course-type-field" data-course-type-select>
+                        <button class="course-type-field__trigger" type="button" aria-expanded="false">
+                            <span>T&#7845;t c&#7843; lo&#7841;i kh&#243;a h&#7885;c</span>
+                            <span class="course-type-field__caret"></span>
+                        </button>
+                        <input type="hidden" name="courseType" value="" />
+                        <div class="course-type-field__dropdown">
+                            <button type="button" data-value="">T&#7845;t c&#7843; lo&#7841;i kh&#243;a h&#7885;c</button>
+                            <button type="button" data-value="giao-tiep">Giao ti&#7871;p</button>
+                            <button type="button" data-value="kem-1-1">K&#232;m 1-1</button>
+                            <button type="button" data-value="mat-goc">M&#7845;t g&#7889;c</button>
+                            <button type="button" data-value="online">Online</button>
+                            <button type="button" data-value="doanh-nghiep">Doanh nghi&#7879;p</button>
+                        </div>
                     </div>
-                </article>
-            }
+                </label>
+                <div class="course-filter__field course-filter__field--wide course-filter__range-field">
+                    <span>Kho&#7843;ng gi&#225;</span>
+                    <div class="course-price-range" data-course-price-range>
+                        <div class="course-price-range__values">
+                            <output data-course-min-price>0&#273;</output>
+                            <output data-course-max-price>10.000.000&#273;</output>
+                        </div>
+                        <div class="course-price-range__slider">
+                            <input type="range" name="minPrice" min="0" max="10000000" step="50000" value="0" aria-label="Gi&#225; th&#7845;p nh&#7845;t" />
+                            <input type="range" name="maxPrice" min="0" max="10000000" step="50000" value="10000000" aria-label="Gi&#225; cao nh&#7845;t" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="course-results">
+                <button class="course-filter-toggle" type="button" aria-label="M&#7903; b&#7843;ng l&#7885;c" aria-expanded="false" data-course-filter-open hidden>
+                    <img src="/img/filter-button.svg" alt="" />
+                </button>
+
+                <div class="course-list" data-course-list>
+                    @foreach (var course in Model.Courses)
+                    {
+                        <article class="course-list__card"
+                                 data-course-card
+                                 data-title="@course.Title"
+                                 data-type="@course.Type"
+                                 data-price="@course.Price"
+                                 data-course-video="@course.VideoUrl"
+                                 data-course-detail="@course.DetailDescription"
+                                 data-course-audience="@course.Audience"
+                                 data-course-schedule="@course.Schedule"
+                                 data-course-roadmap="@course.Roadmap">
+                            <img src="@course.ImageUrl" alt="@course.ImageAlt" />
+                            <div class="course-list__body">
+                                <h2>@course.Title</h2>
+                                <p>@course.Summary</p>
+                                <div class="course-list__meta">
+                                    <span class="course-list__tag">@course.Tag</span>
+                                    <span>@course.Audience</span>
+                                    <span>@course.Schedule</span>
+                                </div>
+                                <strong>@course.DisplayPrice</strong>
+                                <a href="#test-popup" data-test-trigger>&#272;&#259;ng k&#253; t&#432; v&#7845;n</a>
+                            </div>
+                        </article>
+                    }
+                </div>
+
+                <p class="course-list__empty" data-course-empty>Kh&#244;ng t&#236;m th&#7845;y kh&#243;a h&#7885;c ph&#249; h&#7907;p.</p>
+            </div>
         </div>
     </div>
 </section>
@@ -232,28 +300,7 @@
     </div>
 </section>
 
-<section class="zalo section section-soft" id="contact">
-    <div class="page-shell split-layout">
-        <div>
-            <p class="eyebrow">@home.ContactSection.Eyebrow</p>
-            <h2>@home.ContactSection.Heading</h2>
-            <p>@home.ContactSection.Text</p>
-            <a class="btn-primary" href="@baseInfo.Urls.Zalo">@home.ContactSection.ButtonText</a>
-        </div>
-        <div class="zalo__visual">
-            @if (!string.IsNullOrWhiteSpace(baseInfo.Logos.ZaloPhone.ImageUrl))
-            {
-                <img class="zalo-phone" src="@baseInfo.Logos.ZaloPhone.ImageUrl" alt="@baseInfo.Logos.ZaloPhone.Alt" />
-            }
-            <div class="qr-box">
-                <img src="@baseInfo.Qr.Zalo.ImageUrl" alt="@baseInfo.Qr.Zalo.Alt" />
-                <span>@contact.QrCaption</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<footer class="site-footer">
+<footer class="site-footer" id="contact">
     <div class="page-shell footer-grid">
         <div>
             <img class="footer-logo" src="@footerLogo.ImageUrl" alt="@footerLogo.Alt" />
