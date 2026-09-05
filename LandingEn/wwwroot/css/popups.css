@@ -794,8 +794,8 @@
 }
 @media (max-width: 820px) {
     .zalo-widget__panel {
-        width: calc(100vw - 28px);
-        padding: 34px 28px 28px;
+        width: calc(100vw - 24px);
+        padding: 28px 24px 24px;
     }
 
     .zalo-widget__content {
@@ -895,7 +895,25 @@
     }
 
     .test-modal__panel {
-        padding: 34px 28px 26px;
+        padding: 28px 22px 22px;
+    }
+
+    .test-form {
+        gap: 12px;
+    }
+
+    .test-form > label > input[type="text"],
+    .test-form > label > select,
+    .test-form > label > textarea,
+    .phone-field,
+    .need-field__trigger {
+        min-height: 46px;
+        padding-inline: 16px;
+    }
+
+    .test-form > label > textarea {
+        min-height: 92px;
+        padding-top: 12px;
     }
 
     .test-form__locations {

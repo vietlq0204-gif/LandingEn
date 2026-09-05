@@ -215,12 +215,20 @@ textarea {
 }
 
 @media (max-width: 820px) {
+    :root {
+        --text-small: 11px;
+        --text-body: 13px;
+        --text-title: 18px;
+        --text-display: 32px;
+        --radius-Panel: 28px;
+    }
+
     .page-shell {
-        width: min(100% - 28px, 720px);
+        width: min(100% - 24px, 720px);
     }
 
     .section {
-        padding: 64px 0;
+        padding: 52px 0;
     }
 
     .section-heading h2 {
@@ -232,13 +240,13 @@ textarea {
     }
 
     .main-nav__inner {
-        min-height: 64px;
+        min-height: 58px;
         grid-template-columns: auto auto;
     }
 
     .brand img {
-        width: 64px;
-        height: 64px;
+        width: 56px;
+        height: 56px;
     }
 
     .nav-toggle-label {
@@ -269,7 +277,7 @@ textarea {
         position: absolute;
         left: 14px;
         right: 14px;
-        top: 64px;
+        top: 58px;
         display: grid;
         gap: 0;
         padding: 12px;
@@ -290,12 +298,21 @@ textarea {
 }
 
 @media (max-width: 560px) {
+    :root {
+        --text-small: 10px;
+        --text-body: 12px;
+        --text-title: 17px;
+        --text-display: 28px;
+        --radius-Panel: 20px;
+    }
+
     body {
         font-size: var(--text-body);
+        line-height: 1.55;
     }
 
     .section-heading {
-        margin-bottom: 30px;
+        margin-bottom: 24px;
         text-align: left;
     }
 
@@ -306,5 +323,7 @@ textarea {
     .btn-primary,
     .btn-secondary {
         width: 100%;
+        min-height: 40px;
+        padding: 0 16px;
     }
 }
