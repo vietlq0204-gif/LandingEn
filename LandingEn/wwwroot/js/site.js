@@ -1,7 +1,13 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+    if (window.LANDINGEN_STATIC_DATA_READY) {
+        await window.LANDINGEN_STATIC_DATA_READY;
+    }
+
     const zaloWidget = document.querySelector("[data-zalo-widget]");
     const quickChat = document.querySelector("[data-quick-chat]");
     const testModal = document.querySelector("[data-test-modal]");
+    const navToggle = document.querySelector(".nav-toggle");
+    const navLinks = document.querySelectorAll(".nav-links a");
     const courseLayout = document.querySelector("[data-course-layout]");
     const courseFilter = document.querySelector("[data-course-filter]");
     const courseCards = document.querySelectorAll("[data-course-card]");
@@ -11,6 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const courseTypeSelects = document.querySelectorAll("[data-course-type-select]");
     let setZaloOpen = () => {};
     let setQuickChatOpen = () => {};
+
+    navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            if (navToggle) {
+                navToggle.checked = false;
+            }
+        });
+    });
 
     if (zaloWidget) {
         const trigger = zaloWidget.querySelector(".zalo-widget__trigger");

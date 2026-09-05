@@ -275,12 +275,14 @@ textarea {
 
     .nav-toggle:checked ~ .nav-links {
         position: absolute;
-        left: 14px;
-        right: 14px;
+        left: auto;
+        right: 12px;
         top: 58px;
         display: grid;
+        width: min(220px, calc(100vw - 24px));
         gap: 0;
-        padding: 12px;
+        justify-items: stretch;
+        padding: 8px;
         border: 1px solid color-mix(in srgb, var(--color-text) 12%, var(--color-surface));
         border-radius: var(--radius-Panel);
         background: var(--color-surface);
@@ -288,8 +290,9 @@ textarea {
     }
 
     .nav-toggle:checked ~ .nav-links a {
-        padding: 12px 10px;
+        padding: 10px 12px;
         border-bottom: 1px solid color-mix(in srgb, var(--color-text) 12%, var(--color-surface));
+        text-align: left;
     }
 
     .nav-toggle:checked ~ .nav-links a:last-child {
