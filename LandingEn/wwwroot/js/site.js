@@ -576,8 +576,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 .join(" ");
 
             formData.set("fullName", payload.fullName);
-            formData.set("phone", payload.phone);
-            formData.set("countryCode", payload.countryCode);
             formData.set("fullPhone", fullPhone);
             formData.set("location", payload.location);
             formData.set("need", payload.need);

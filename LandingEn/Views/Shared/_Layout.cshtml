@@ -5,6 +5,10 @@
     var pageTitle = string.IsNullOrWhiteSpace(currentTitle)
         ? baseInfo.BrandName
         : $"{currentTitle}{layoutData.TitleSeparator}{baseInfo.BrandName}";
+    var contactInfo = ViewData["ContactInfo"] as ContactInfoViewModel ?? new ContactInfoViewModel();
+    var footerLogo = string.IsNullOrWhiteSpace(baseInfo.Logos.Footer.ImageUrl)
+        ? baseInfo.Logos.Page
+        : baseInfo.Logos.Footer;
 }
 
 <!DOCTYPE html>
@@ -59,7 +63,76 @@
     @RenderBody()
 </main>
 
-@await Html.PartialAsync("_Popups", ViewData["ContactInfo"] as ContactInfoViewModel ?? new ContactInfoViewModel())
+<footer class="site-footer" id="contact">
+    <div class="page-shell site-footer__inner">
+        <div class="site-footer__brand">
+            <a class="site-footer__logo" href="@baseInfo.Urls.Home" aria-label="@baseInfo.BrandName">
+                <img src="@footerLogo.ImageUrl" alt="@footerLogo.Alt" />
+            </a>
+            <div>
+                <h2>@baseInfo.BrandName</h2>
+                <p>@baseInfo.Category</p>
+            </div>
+        </div>
+        <div class="site-footer__group">
+            <h3>Điều hướng</h3>
+            <div class="site-footer__links">
+                @foreach (var link in layoutData.Navigation.Links ?? Array.Empty<NavigationLinkData>())
+                {
+                    <a href="@link.Href">@link.Text</a>
+                }
+            </div>
+        </div>
+        <div class="site-footer__group">
+            <h3>Địa chỉ</h3>
+            <ul class="site-footer__list">
+                @foreach (var address in contactInfo.Addresses ?? Array.Empty<string>())
+                {
+                    <li>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.75A7.25 7.25 0 0 0 4.75 10c0 5.35 6.72 10.72 7.01 10.94a.4.4 0 0 0 .48 0c.29-.22 7.01-5.59 7.01-10.94A7.25 7.25 0 0 0 12 2.75zm0 9.85A2.6 2.6 0 1 1 12 7.4a2.6 2.6 0 0 1 0 5.2z" /></svg>
+                        <span>@address</span>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="site-footer__group">
+            <h3>Liên hệ</h3>
+            <div class="site-footer__links">
+                <a href="tel:@baseInfo.PhoneNumber" aria-label="Gọi @baseInfo.PhoneDisplay">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.3-.3.73-.39 1.12-.27 1.2.39 2.49.59 3.82.59.36 0 .65.29.65.65V20c0 .36-.29.65-.65.65C11.53 20.65 3.35 12.47 3.35 3.65 3.35 3.29 3.64 3 4 3h3.85c.36 0 .65.29.65.65 0 1.33.2 2.62.59 3.82.12.39.03.82-.27 1.12l-2.2 2.2z" /></svg>
+                    <span>@contactInfo.PhoneLabel: @baseInfo.PhoneDisplay</span>
+                </a>
+                <a href="mailto:@baseInfo.Email" aria-label="Gửi email @baseInfo.Email">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1zm8 7.35L5.34 7H5v10h14V7h-.34L12 12.35zM6.86 7 12 11.1 17.14 7H6.86z" /></svg>
+                    <span>@contactInfo.EmailLabel: @baseInfo.Email</span>
+                </a>
+                <a href="@baseInfo.Urls.Website" target="_blank" rel="noopener" aria-label="Mở website @baseInfo.Urls.Website">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.75a9.25 9.25 0 1 0 0 18.5 9.25 9.25 0 0 0 0-18.5zm6.74 8.5h-3.1a15.6 15.6 0 0 0-1.02-5.15 7.77 7.77 0 0 1 4.12 5.15zm-6.74 8.5c-.7-1.03-1.55-3.05-1.68-7h3.36c-.13 3.95-.98 5.97-1.68 7zm1.68-8.5h-3.36c.13-3.95.98-5.97 1.68-7 .7 1.03 1.55 3.05 1.68 7zm-4.3-5.15a15.6 15.6 0 0 0-1.02 5.15h-3.1A7.77 7.77 0 0 1 9.38 6.1zm-4.12 6.65h3.1a15.6 15.6 0 0 0 1.02 5.15 7.77 7.77 0 0 1-4.12-5.15zm9.36 5.15a15.6 15.6 0 0 0 1.02-5.15h3.1a7.77 7.77 0 0 1-4.12 5.15z" /></svg>
+                    <span>Website: @baseInfo.Urls.Website</span>
+                </a>
+            </div>
+        </div>
+        <div class="site-footer__group">
+            <h3>Mạng xã hội</h3>
+            <div class="site-footer__social">
+                <a href="@baseInfo.Urls.Zalo" target="_blank" rel="noopener" aria-label="Mở Zalo">
+                    <span>Zalo</span>
+                </a>
+                <a href="@baseInfo.Urls.Messenger" target="_blank" rel="noopener" aria-label="Mở Messenger">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.14 2 11.25c0 2.91 1.45 5.51 3.72 7.2V22l3.4-1.87c.91.25 1.88.38 2.88.38 5.52 0 10-4.14 10-9.26S17.52 2 12 2zm.97 12.46-2.55-2.72-4.98 2.72 5.47-5.82 2.61 2.72 4.92-2.72-5.47 5.82z" /></svg>
+                    <span>Messenger</span>
+                </a>
+                <a href="@baseInfo.Urls.Facebook" target="_blank" rel="noopener" aria-label="Mở Facebook">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.4 21v-7.7h2.6l.4-3h-3V8.35c0-.87.24-1.46 1.49-1.46h1.59V4.2c-.27-.04-1.22-.12-2.32-.12-2.3 0-3.88 1.4-3.88 3.98v2.22H7.7v3h2.58V21h3.12z" /></svg>
+                    <span>Facebook</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="page-shell site-footer__bottom">© Copyright @DateTime.Now.Year Tieng Anh Nghe Noi. All rights reserved.</div>
+</footer>
+
+@await Html.PartialAsync("_Popups", contactInfo)
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

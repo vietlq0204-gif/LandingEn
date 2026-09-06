@@ -2,11 +2,6 @@
 
 @{
     var home = Model.Home;
-    var contact = Model.Contact;
-    var baseInfo = Model.BaseInfo;
-    var footerLogo = string.IsNullOrWhiteSpace(baseInfo.Logos.Footer.ImageUrl)
-        ? baseInfo.Logos.Page
-        : baseInfo.Logos.Footer;
     ViewData["Title"] = home.Title;
 }
 
@@ -299,31 +294,3 @@
         </div>
     </div>
 </section>
-
-<footer class="site-footer" id="contact">
-    <div class="page-shell footer-grid">
-        <div>
-            <img class="footer-logo" src="@footerLogo.ImageUrl" alt="@footerLogo.Alt" />
-            <p>@home.Footer.Description</p>
-            <p><strong>@home.Footer.PhoneLabel:</strong> @baseInfo.PhoneDisplay</p>
-        </div>
-        @foreach (var group in home.Footer.LinkGroups ?? Array.Empty<FooterLinkGroupData>())
-        {
-            <div>
-                <h3>@group.Heading</h3>
-                @foreach (var link in group.Links ?? Array.Empty<FooterLinkData>())
-                {
-                    <a href="@link.Href">@link.Text</a>
-                }
-            </div>
-        }
-        <div>
-            <h3>@home.Footer.AddressesHeading</h3>
-            @foreach (var address in contact.Addresses ?? Array.Empty<string>())
-            {
-                <p>@address</p>
-            }
-        </div>
-    </div>
-    <div class="page-shell footer-bottom">@home.Footer.Copyright</div>
-</footer>
